@@ -1,9 +1,9 @@
 ---
 library:
-  name: USPSTF_Statin_Use_for_Primary_Prevention_of_CVD_in_Adults_FHIRv401
+  name: ColorectalCancerScreeningsFHIR
   paths: ../cql
 hook:
-  id: statin-use
+  id: colon-cancer-screening
   pmTestGenSupport: pm-test-gen.js
 tests:
   path: cases

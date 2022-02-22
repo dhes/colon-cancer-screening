@@ -1,0 +1,2717 @@
+{
+   "library" : {
+      "annotation" : [ {
+         "translatorOptions" : "",
+         "type" : "CqlToElmInfo"
+      } ],
+      "identifier" : {
+         "id" : "CumulativeMedicationDurationFHIR4",
+         "version" : "1.0.000"
+      },
+      "schemaIdentifier" : {
+         "id" : "urn:hl7-org:elm",
+         "version" : "r1"
+      },
+      "usings" : {
+         "def" : [ {
+            "localIdentifier" : "System",
+            "uri" : "urn:hl7-org:elm-types:r1"
+         }, {
+            "localIdentifier" : "FHIR",
+            "uri" : "http://hl7.org/fhir",
+            "version" : "4.0.1"
+         } ]
+      },
+      "includes" : {
+         "def" : [ {
+            "localIdentifier" : "FHIRHelpers",
+            "path" : "FHIRHelpers",
+            "version" : "4.0.001"
+         } ]
+      },
+      "parameters" : {
+         "def" : [ {
+            "name" : "ErrorLevel",
+            "accessLevel" : "Public",
+            "default" : {
+               "valueType" : "{urn:hl7-org:elm-types:r1}String",
+               "value" : "Warning",
+               "type" : "Literal"
+            },
+            "parameterTypeSpecifier" : {
+               "name" : "{urn:hl7-org:elm-types:r1}String",
+               "type" : "NamedTypeSpecifier"
+            }
+         } ]
+      },
+      "codeSystems" : {
+         "def" : [ {
+            "name" : "V3TimingEvent",
+            "id" : "http://terminology.hl7.org/CodeSystem/v3-TimingEvent",
+            "accessLevel" : "Public"
+         }, {
+            "name" : "EventTiming",
+            "id" : "http://hl7.org/fhir/event-timing",
+            "accessLevel" : "Public"
+         } ]
+      },
+      "codes" : {
+         "def" : [ {
+            "name" : "AC",
+            "id" : "AC",
+            "display" : "AC",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "V3TimingEvent"
+            }
+         }, {
+            "name" : "ACD",
+            "id" : "ACD",
+            "display" : "ACD",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "V3TimingEvent"
+            }
+         }, {
+            "name" : "ACM",
+            "id" : "ACM",
+            "display" : "ACM",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "V3TimingEvent"
+            }
+         }, {
+            "name" : "ACV",
+            "id" : "ACV",
+            "display" : "ACV",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "V3TimingEvent"
+            }
+         }, {
+            "name" : "AFT",
+            "id" : "AFT",
+            "display" : "AFT",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "EventTiming"
+            }
+         }, {
+            "name" : "AFT.early",
+            "id" : "AFT.early",
+            "display" : "AFT.early",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "EventTiming"
+            }
+         }, {
+            "name" : "AFT.late",
+            "id" : "AFT.late",
+            "display" : "AFT.late",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "EventTiming"
+            }
+         }, {
+            "name" : "C",
+            "id" : "C",
+            "display" : "C",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "V3TimingEvent"
+            }
+         }, {
+            "name" : "CD",
+            "id" : "CD",
+            "display" : "CD",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "V3TimingEvent"
+            }
+         }, {
+            "name" : "CM",
+            "id" : "CM",
+            "display" : "CM",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "V3TimingEvent"
+            }
+         }, {
+            "name" : "CV",
+            "id" : "CV",
+            "display" : "CV",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "V3TimingEvent"
+            }
+         }, {
+            "name" : "EVE",
+            "id" : "EVE",
+            "display" : "EVE",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "EventTiming"
+            }
+         }, {
+            "name" : "EVE.early",
+            "id" : "EVE.early",
+            "display" : "EVE.early",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "EventTiming"
+            }
+         }, {
+            "name" : "EVE.late",
+            "id" : "EVE.late",
+            "display" : "EVE.late",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "EventTiming"
+            }
+         }, {
+            "name" : "HS",
+            "id" : "HS",
+            "display" : "HS",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "V3TimingEvent"
+            }
+         }, {
+            "name" : "MORN",
+            "id" : "MORN",
+            "display" : "MORN",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "EventTiming"
+            }
+         }, {
+            "name" : "MORN.early",
+            "id" : "MORN.early",
+            "display" : "MORN.early",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "EventTiming"
+            }
+         }, {
+            "name" : "MORN.late",
+            "id" : "MORN.late",
+            "display" : "MORN.late",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "EventTiming"
+            }
+         }, {
+            "name" : "NIGHT",
+            "id" : "NIGHT",
+            "display" : "NIGHT",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "EventTiming"
+            }
+         }, {
+            "name" : "NOON",
+            "id" : "NOON",
+            "display" : "NOON",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "EventTiming"
+            }
+         }, {
+            "name" : "PC",
+            "id" : "PC",
+            "display" : "PC",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "V3TimingEvent"
+            }
+         }, {
+            "name" : "PCD",
+            "id" : "PCD",
+            "display" : "PCD",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "V3TimingEvent"
+            }
+         }, {
+            "name" : "PCM",
+            "id" : "PCM",
+            "display" : "PCM",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "V3TimingEvent"
+            }
+         }, {
+            "name" : "PCV",
+            "id" : "PCV",
+            "display" : "PCV",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "V3TimingEvent"
+            }
+         }, {
+            "name" : "PHS",
+            "id" : "PHS",
+            "display" : "PHS",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "EventTiming"
+            }
+         }, {
+            "name" : "WAKE",
+            "id" : "WAKE",
+            "display" : "WAKE",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "V3TimingEvent"
+            }
+         } ]
+      },
+      "contexts" : {
+         "def" : [ {
+            "name" : "Patient"
+         } ]
+      },
+      "statements" : {
+         "def" : [ {
+            "name" : "Patient",
+            "context" : "Patient",
+            "expression" : {
+               "type" : "SingletonFrom",
+               "operand" : {
+                  "dataType" : "{http://hl7.org/fhir}Patient",
+                  "templateId" : "http://hl7.org/fhir/StructureDefinition/Patient",
+                  "type" : "Retrieve"
+               }
+            }
+         }, {
+            "name" : "ToDaily",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "type" : "FunctionDef",
+            "expression" : {
+               "type" : "Case",
+               "comparand" : {
+                  "path" : "unit",
+                  "type" : "Property",
+                  "source" : {
+                     "name" : "period",
+                     "type" : "OperandRef"
+                  }
+               },
+               "caseItem" : [ {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "h",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Multiply",
+                     "operand" : [ {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "name" : "frequency",
+                           "type" : "OperandRef"
+                        }
+                     }, {
+                        "type" : "Divide",
+                        "operand" : [ {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                           "value" : "24.0",
+                           "type" : "Literal"
+                        }, {
+                           "path" : "value",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "period",
+                              "type" : "OperandRef"
+                           }
+                        } ]
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "min",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Multiply",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "name" : "frequency",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "type" : "Divide",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                              "value" : "24.0",
+                              "type" : "Literal"
+                           }, {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                           "value" : "60",
+                           "type" : "Literal"
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "s",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Multiply",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "Multiply",
+                           "operand" : [ {
+                              "type" : "ToDecimal",
+                              "operand" : {
+                                 "name" : "frequency",
+                                 "type" : "OperandRef"
+                              }
+                           }, {
+                              "type" : "Divide",
+                              "operand" : [ {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                                 "value" : "24.0",
+                                 "type" : "Literal"
+                              }, {
+                                 "path" : "value",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "period",
+                                    "type" : "OperandRef"
+                                 }
+                              } ]
+                           } ]
+                        }, {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "60",
+                              "type" : "Literal"
+                           }
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                           "value" : "60",
+                           "type" : "Literal"
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "d",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Divide",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "name" : "frequency",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "type" : "Divide",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                              "value" : "24.0",
+                              "type" : "Literal"
+                           }, {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                           "value" : "24",
+                           "type" : "Literal"
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "wk",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Divide",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "name" : "frequency",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "type" : "Divide",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                              "value" : "24.0",
+                              "type" : "Literal"
+                           }, {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "type" : "Multiply",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "24",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "7",
+                              "type" : "Literal"
+                           } ]
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "mo",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Divide",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "name" : "frequency",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "type" : "Divide",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                              "value" : "24.0",
+                              "type" : "Literal"
+                           }, {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "type" : "Multiply",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "24",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "30",
+                              "type" : "Literal"
+                           } ]
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "a",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Divide",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "name" : "frequency",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "type" : "Divide",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                              "value" : "24.0",
+                              "type" : "Literal"
+                           }, {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "type" : "Multiply",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "24",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "365",
+                              "type" : "Literal"
+                           } ]
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "hour",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Multiply",
+                     "operand" : [ {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "name" : "frequency",
+                           "type" : "OperandRef"
+                        }
+                     }, {
+                        "type" : "Divide",
+                        "operand" : [ {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                           "value" : "24.0",
+                           "type" : "Literal"
+                        }, {
+                           "path" : "value",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "period",
+                              "type" : "OperandRef"
+                           }
+                        } ]
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "minute",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Multiply",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "name" : "frequency",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "type" : "Divide",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                              "value" : "24.0",
+                              "type" : "Literal"
+                           }, {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                           "value" : "60",
+                           "type" : "Literal"
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "second",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Multiply",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "Multiply",
+                           "operand" : [ {
+                              "type" : "ToDecimal",
+                              "operand" : {
+                                 "name" : "frequency",
+                                 "type" : "OperandRef"
+                              }
+                           }, {
+                              "type" : "Divide",
+                              "operand" : [ {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                                 "value" : "24.0",
+                                 "type" : "Literal"
+                              }, {
+                                 "path" : "value",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "period",
+                                    "type" : "OperandRef"
+                                 }
+                              } ]
+                           } ]
+                        }, {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "60",
+                              "type" : "Literal"
+                           }
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                           "value" : "60",
+                           "type" : "Literal"
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "day",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Divide",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "name" : "frequency",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "type" : "Divide",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                              "value" : "24.0",
+                              "type" : "Literal"
+                           }, {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                           "value" : "24",
+                           "type" : "Literal"
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "week",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Divide",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "name" : "frequency",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "type" : "Divide",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                              "value" : "24.0",
+                              "type" : "Literal"
+                           }, {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "type" : "Multiply",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "24",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "7",
+                              "type" : "Literal"
+                           } ]
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "month",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Divide",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "name" : "frequency",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "type" : "Divide",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                              "value" : "24.0",
+                              "type" : "Literal"
+                           }, {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "type" : "Multiply",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "24",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "30",
+                              "type" : "Literal"
+                           } ]
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "year",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Divide",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "name" : "frequency",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "type" : "Divide",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                              "value" : "24.0",
+                              "type" : "Literal"
+                           }, {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "type" : "Multiply",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "24",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "365",
+                              "type" : "Literal"
+                           } ]
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "hours",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Multiply",
+                     "operand" : [ {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "name" : "frequency",
+                           "type" : "OperandRef"
+                        }
+                     }, {
+                        "type" : "Divide",
+                        "operand" : [ {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                           "value" : "24.0",
+                           "type" : "Literal"
+                        }, {
+                           "path" : "value",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "period",
+                              "type" : "OperandRef"
+                           }
+                        } ]
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "minutes",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Multiply",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "name" : "frequency",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "type" : "Divide",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                              "value" : "24.0",
+                              "type" : "Literal"
+                           }, {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                           "value" : "60",
+                           "type" : "Literal"
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "seconds",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Multiply",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "Multiply",
+                           "operand" : [ {
+                              "type" : "ToDecimal",
+                              "operand" : {
+                                 "name" : "frequency",
+                                 "type" : "OperandRef"
+                              }
+                           }, {
+                              "type" : "Divide",
+                              "operand" : [ {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                                 "value" : "24.0",
+                                 "type" : "Literal"
+                              }, {
+                                 "path" : "value",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "period",
+                                    "type" : "OperandRef"
+                                 }
+                              } ]
+                           } ]
+                        }, {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "60",
+                              "type" : "Literal"
+                           }
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                           "value" : "60",
+                           "type" : "Literal"
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "days",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Divide",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "name" : "frequency",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "type" : "Divide",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                              "value" : "24.0",
+                              "type" : "Literal"
+                           }, {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                           "value" : "24",
+                           "type" : "Literal"
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "weeks",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Divide",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "name" : "frequency",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "type" : "Divide",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                              "value" : "24.0",
+                              "type" : "Literal"
+                           }, {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "type" : "Multiply",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "24",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "7",
+                              "type" : "Literal"
+                           } ]
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "months",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Divide",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "name" : "frequency",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "type" : "Divide",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                              "value" : "24.0",
+                              "type" : "Literal"
+                           }, {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "type" : "Multiply",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "24",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "30",
+                              "type" : "Literal"
+                           } ]
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "years",
+                     "type" : "Literal"
+                  },
+                  "then" : {
+                     "type" : "Divide",
+                     "operand" : [ {
+                        "type" : "Multiply",
+                        "operand" : [ {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "name" : "frequency",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "type" : "Divide",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                              "value" : "24.0",
+                              "type" : "Literal"
+                           }, {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "type" : "Multiply",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "24",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "365",
+                              "type" : "Literal"
+                           } ]
+                        }
+                     } ]
+                  }
+               } ],
+               "else" : {
+                  "asType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Message",
+                     "source" : {
+                        "type" : "Null"
+                     },
+                     "condition" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                        "value" : "true",
+                        "type" : "Literal"
+                     },
+                     "code" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "CMDLogic.ToDaily.UnknownUnit",
+                        "type" : "Literal"
+                     },
+                     "severity" : {
+                        "name" : "ErrorLevel",
+                        "type" : "ParameterRef"
+                     },
+                     "message" : {
+                        "type" : "Concatenate",
+                        "operand" : [ {
+                           "type" : "Coalesce",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "Unknown unit ",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "",
+                              "type" : "Literal"
+                           } ]
+                        }, {
+                           "type" : "Coalesce",
+                           "operand" : [ {
+                              "path" : "unit",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "period",
+                                 "type" : "OperandRef"
+                              }
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "",
+                              "type" : "Literal"
+                           } ]
+                        } ]
+                     }
+                  }
+               }
+            },
+            "operand" : [ {
+               "name" : "frequency",
+               "operandTypeSpecifier" : {
+                  "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "type" : "NamedTypeSpecifier"
+               }
+            }, {
+               "name" : "period",
+               "operandTypeSpecifier" : {
+                  "name" : "{urn:hl7-org:elm-types:r1}Quantity",
+                  "type" : "NamedTypeSpecifier"
+               }
+            } ]
+         }, {
+            "name" : "ToDaily",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "type" : "FunctionDef",
+            "expression" : {
+               "type" : "Case",
+               "comparand" : {
+                  "name" : "frequency",
+                  "type" : "OperandRef"
+               },
+               "caseItem" : [ {
+                  "when" : {
+                     "name" : "C",
+                     "type" : "CodeRef"
+                  },
+                  "then" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                     "value" : "3.0",
+                     "type" : "Literal"
+                  }
+               } ],
+               "else" : {
+                  "asType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Message",
+                     "source" : {
+                        "type" : "Null"
+                     },
+                     "condition" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                        "value" : "true",
+                        "type" : "Literal"
+                     },
+                     "code" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "CMDLogic.ToDaily.UnknownFrequencyCode",
+                        "type" : "Literal"
+                     },
+                     "severity" : {
+                        "name" : "ErrorLevel",
+                        "type" : "ParameterRef"
+                     },
+                     "message" : {
+                        "type" : "Concatenate",
+                        "operand" : [ {
+                           "type" : "Coalesce",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "Unknown frequency code ",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "",
+                              "type" : "Literal"
+                           } ]
+                        }, {
+                           "type" : "Coalesce",
+                           "operand" : [ {
+                              "path" : "code",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "frequency",
+                                 "type" : "OperandRef"
+                              }
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "",
+                              "type" : "Literal"
+                           } ]
+                        } ]
+                     }
+                  }
+               }
+            },
+            "operand" : [ {
+               "name" : "frequency",
+               "operandTypeSpecifier" : {
+                  "name" : "{urn:hl7-org:elm-types:r1}Code",
+                  "type" : "NamedTypeSpecifier"
+               }
+            } ]
+         }, {
+            "name" : "MedicationRequestPeriod",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "type" : "FunctionDef",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "R",
+                  "expression" : {
+                     "name" : "Request",
+                     "type" : "OperandRef"
+                  }
+               } ],
+               "let" : [ {
+                  "identifier" : "dosage",
+                  "expression" : {
+                     "type" : "SingletonFrom",
+                     "operand" : {
+                        "path" : "dosageInstruction",
+                        "scope" : "R",
+                        "type" : "Property"
+                     }
+                  }
+               }, {
+                  "identifier" : "doseAndRate",
+                  "expression" : {
+                     "type" : "SingletonFrom",
+                     "operand" : {
+                        "path" : "doseAndRate",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "dosage",
+                           "type" : "QueryLetRef"
+                        }
+                     }
+                  }
+               }, {
+                  "identifier" : "doseRange",
+                  "expression" : {
+                     "strict" : false,
+                     "type" : "As",
+                     "operand" : {
+                        "path" : "dose",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "doseAndRate",
+                           "type" : "QueryLetRef"
+                        }
+                     },
+                     "asTypeSpecifier" : {
+                        "name" : "{http://hl7.org/fhir}Range",
+                        "type" : "NamedTypeSpecifier"
+                     }
+                  }
+               }, {
+                  "identifier" : "doseQuantity",
+                  "expression" : {
+                     "strict" : false,
+                     "type" : "As",
+                     "operand" : {
+                        "path" : "dose",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "doseAndRate",
+                           "type" : "QueryLetRef"
+                        }
+                     },
+                     "asTypeSpecifier" : {
+                        "name" : "{http://hl7.org/fhir}SimpleQuantity",
+                        "type" : "NamedTypeSpecifier"
+                     }
+                  }
+               }, {
+                  "identifier" : "dose",
+                  "expression" : {
+                     "type" : "Coalesce",
+                     "operand" : [ {
+                        "type" : "End",
+                        "operand" : {
+                           "name" : "ToInterval",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "name" : "doseRange",
+                              "type" : "QueryLetRef"
+                           } ]
+                        }
+                     }, {
+                        "name" : "ToQuantity",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "name" : "doseQuantity",
+                           "type" : "QueryLetRef"
+                        } ]
+                     } ]
+                  }
+               }, {
+                  "identifier" : "timing",
+                  "expression" : {
+                     "path" : "timing",
+                     "type" : "Property",
+                     "source" : {
+                        "name" : "dosage",
+                        "type" : "QueryLetRef"
+                     }
+                  }
+               }, {
+                  "identifier" : "frequency",
+                  "expression" : {
+                     "type" : "Coalesce",
+                     "operand" : [ {
+                        "path" : "frequencyMax",
+                        "type" : "Property",
+                        "source" : {
+                           "path" : "repeat",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "timing",
+                              "type" : "QueryLetRef"
+                           }
+                        }
+                     }, {
+                        "path" : "frequency",
+                        "type" : "Property",
+                        "source" : {
+                           "path" : "repeat",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "timing",
+                              "type" : "QueryLetRef"
+                           }
+                        }
+                     } ]
+                  }
+               }, {
+                  "identifier" : "period",
+                  "expression" : {
+                     "classType" : "{urn:hl7-org:elm-types:r1}Quantity",
+                     "type" : "Instance",
+                     "element" : [ {
+                        "name" : "value",
+                        "value" : {
+                           "name" : "ToDecimal",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "path" : "period",
+                              "type" : "Property",
+                              "source" : {
+                                 "path" : "repeat",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "timing",
+                                    "type" : "QueryLetRef"
+                                 }
+                              }
+                           } ]
+                        }
+                     }, {
+                        "name" : "unit",
+                        "value" : {
+                           "path" : "value",
+                           "type" : "Property",
+                           "source" : {
+                              "path" : "periodUnit",
+                              "type" : "Property",
+                              "source" : {
+                                 "path" : "repeat",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "timing",
+                                    "type" : "QueryLetRef"
+                                 }
+                              }
+                           }
+                        }
+                     } ]
+                  }
+               }, {
+                  "identifier" : "dosesPerDay",
+                  "expression" : {
+                     "type" : "Coalesce",
+                     "operand" : [ {
+                        "name" : "ToDaily",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "name" : "ToInteger",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "name" : "frequency",
+                              "type" : "QueryLetRef"
+                           } ]
+                        }, {
+                           "name" : "period",
+                           "type" : "QueryLetRef"
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "type" : "Count",
+                           "source" : {
+                              "path" : "timeOfDay",
+                              "type" : "Property",
+                              "source" : {
+                                 "path" : "repeat",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "timing",
+                                    "type" : "QueryLetRef"
+                                 }
+                              }
+                           }
+                        }
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "1.0",
+                        "type" : "Literal"
+                     } ]
+                  }
+               }, {
+                  "identifier" : "boundsPeriod",
+                  "expression" : {
+                     "strict" : false,
+                     "type" : "As",
+                     "operand" : {
+                        "path" : "bounds",
+                        "type" : "Property",
+                        "source" : {
+                           "path" : "repeat",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "timing",
+                              "type" : "QueryLetRef"
+                           }
+                        }
+                     },
+                     "asTypeSpecifier" : {
+                        "name" : "{http://hl7.org/fhir}Period",
+                        "type" : "NamedTypeSpecifier"
+                     }
+                  }
+               }, {
+                  "identifier" : "daysSupply",
+                  "expression" : {
+                     "path" : "expectedSupplyDuration",
+                     "type" : "Property",
+                     "source" : {
+                        "path" : "dispenseRequest",
+                        "scope" : "R",
+                        "type" : "Property"
+                     }
+                  }
+               }, {
+                  "identifier" : "quantity",
+                  "expression" : {
+                     "path" : "quantity",
+                     "type" : "Property",
+                     "source" : {
+                        "path" : "dispenseRequest",
+                        "scope" : "R",
+                        "type" : "Property"
+                     }
+                  }
+               }, {
+                  "identifier" : "refills",
+                  "expression" : {
+                     "type" : "Coalesce",
+                     "operand" : [ {
+                        "name" : "ToInteger",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "path" : "numberOfRepeatsAllowed",
+                           "type" : "Property",
+                           "source" : {
+                              "path" : "dispenseRequest",
+                              "scope" : "R",
+                              "type" : "Property"
+                           }
+                        } ]
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                        "value" : "0",
+                        "type" : "Literal"
+                     } ]
+                  }
+               }, {
+                  "identifier" : "startDate",
+                  "expression" : {
+                     "type" : "Coalesce",
+                     "operand" : [ {
+                        "type" : "Start",
+                        "operand" : {
+                           "name" : "ToInterval",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "name" : "boundsPeriod",
+                              "type" : "QueryLetRef"
+                           } ]
+                        }
+                     }, {
+                        "type" : "Start",
+                        "operand" : {
+                           "name" : "ToInterval",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "path" : "validityPeriod",
+                              "type" : "Property",
+                              "source" : {
+                                 "path" : "dispenseRequest",
+                                 "scope" : "R",
+                                 "type" : "Property"
+                              }
+                           } ]
+                        }
+                     }, {
+                        "name" : "ToDateTime",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "path" : "authoredOn",
+                           "scope" : "R",
+                           "type" : "Property"
+                        } ]
+                     } ]
+                  }
+               } ],
+               "relationship" : [ ],
+               "return" : {
+                  "expression" : {
+                     "type" : "If",
+                     "condition" : {
+                        "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                        "type" : "As",
+                        "operand" : {
+                           "type" : "Not",
+                           "operand" : {
+                              "type" : "Or",
+                              "operand" : [ {
+                                 "type" : "IsNull",
+                                 "operand" : {
+                                    "type" : "End",
+                                    "operand" : {
+                                       "name" : "ToInterval",
+                                       "libraryName" : "FHIRHelpers",
+                                       "type" : "FunctionRef",
+                                       "operand" : [ {
+                                          "name" : "boundsPeriod",
+                                          "type" : "QueryLetRef"
+                                       } ]
+                                    }
+                                 }
+                              }, {
+                                 "type" : "Equal",
+                                 "operand" : [ {
+                                    "type" : "End",
+                                    "operand" : {
+                                       "name" : "ToInterval",
+                                       "libraryName" : "FHIRHelpers",
+                                       "type" : "FunctionRef",
+                                       "operand" : [ {
+                                          "name" : "boundsPeriod",
+                                          "type" : "QueryLetRef"
+                                       } ]
+                                    }
+                                 }, {
+                                    "valueType" : "{urn:hl7-org:elm-types:r1}DateTime",
+                                    "type" : "MaxValue"
+                                 } ]
+                              } ]
+                           }
+                        }
+                     },
+                     "then" : {
+                        "lowClosed" : true,
+                        "highClosed" : true,
+                        "type" : "Interval",
+                        "low" : {
+                           "name" : "startDate",
+                           "type" : "QueryLetRef"
+                        },
+                        "high" : {
+                           "type" : "End",
+                           "operand" : {
+                              "name" : "ToInterval",
+                              "libraryName" : "FHIRHelpers",
+                              "type" : "FunctionRef",
+                              "operand" : [ {
+                                 "name" : "boundsPeriod",
+                                 "type" : "QueryLetRef"
+                              } ]
+                           }
+                        }
+                     },
+                     "else" : {
+                        "lowClosed" : true,
+                        "highClosed" : true,
+                        "type" : "Interval",
+                        "low" : {
+                           "name" : "startDate",
+                           "type" : "QueryLetRef"
+                        },
+                        "high" : {
+                           "type" : "Add",
+                           "operand" : [ {
+                              "name" : "startDate",
+                              "type" : "QueryLetRef"
+                           }, {
+                              "type" : "Multiply",
+                              "operand" : [ {
+                                 "type" : "Coalesce",
+                                 "operand" : [ {
+                                    "name" : "ToQuantity",
+                                    "libraryName" : "FHIRHelpers",
+                                    "type" : "FunctionRef",
+                                    "operand" : [ {
+                                       "name" : "daysSupply",
+                                       "type" : "QueryLetRef"
+                                    } ]
+                                 }, {
+                                    "type" : "Divide",
+                                    "operand" : [ {
+                                       "name" : "ToQuantity",
+                                       "libraryName" : "FHIRHelpers",
+                                       "type" : "FunctionRef",
+                                       "operand" : [ {
+                                          "name" : "quantity",
+                                          "type" : "QueryLetRef"
+                                       } ]
+                                    }, {
+                                       "type" : "Multiply",
+                                       "operand" : [ {
+                                          "name" : "dose",
+                                          "type" : "QueryLetRef"
+                                       }, {
+                                          "type" : "ToQuantity",
+                                          "operand" : {
+                                             "name" : "dosesPerDay",
+                                             "type" : "QueryLetRef"
+                                          }
+                                       } ]
+                                    } ]
+                                 } ]
+                              }, {
+                                 "type" : "ToQuantity",
+                                 "operand" : {
+                                    "type" : "Add",
+                                    "operand" : [ {
+                                       "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                                       "value" : "1",
+                                       "type" : "Literal"
+                                    }, {
+                                       "name" : "refills",
+                                       "type" : "QueryLetRef"
+                                    } ]
+                                 }
+                              } ]
+                           } ]
+                        }
+                     }
+                  }
+               }
+            },
+            "operand" : [ {
+               "name" : "Request",
+               "operandTypeSpecifier" : {
+                  "name" : "{http://hl7.org/fhir}MedicationRequest",
+                  "type" : "NamedTypeSpecifier"
+               }
+            } ]
+         }, {
+            "name" : "MedicationDispensePeriod",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "type" : "FunctionDef",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "D",
+                  "expression" : {
+                     "name" : "Dispense",
+                     "type" : "OperandRef"
+                  }
+               } ],
+               "let" : [ {
+                  "identifier" : "dosage",
+                  "expression" : {
+                     "type" : "SingletonFrom",
+                     "operand" : {
+                        "path" : "dosageInstruction",
+                        "scope" : "D",
+                        "type" : "Property"
+                     }
+                  }
+               }, {
+                  "identifier" : "doseAndRate",
+                  "expression" : {
+                     "type" : "SingletonFrom",
+                     "operand" : {
+                        "path" : "doseAndRate",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "dosage",
+                           "type" : "QueryLetRef"
+                        }
+                     }
+                  }
+               }, {
+                  "identifier" : "doseRange",
+                  "expression" : {
+                     "strict" : false,
+                     "type" : "As",
+                     "operand" : {
+                        "path" : "dose",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "doseAndRate",
+                           "type" : "QueryLetRef"
+                        }
+                     },
+                     "asTypeSpecifier" : {
+                        "name" : "{http://hl7.org/fhir}Range",
+                        "type" : "NamedTypeSpecifier"
+                     }
+                  }
+               }, {
+                  "identifier" : "doseQuantity",
+                  "expression" : {
+                     "strict" : false,
+                     "type" : "As",
+                     "operand" : {
+                        "path" : "dose",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "doseAndRate",
+                           "type" : "QueryLetRef"
+                        }
+                     },
+                     "asTypeSpecifier" : {
+                        "name" : "{http://hl7.org/fhir}SimpleQuantity",
+                        "type" : "NamedTypeSpecifier"
+                     }
+                  }
+               }, {
+                  "identifier" : "dose",
+                  "expression" : {
+                     "type" : "Coalesce",
+                     "operand" : [ {
+                        "type" : "End",
+                        "operand" : {
+                           "name" : "ToInterval",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "name" : "doseRange",
+                              "type" : "QueryLetRef"
+                           } ]
+                        }
+                     }, {
+                        "name" : "ToQuantity",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "name" : "doseQuantity",
+                           "type" : "QueryLetRef"
+                        } ]
+                     } ]
+                  }
+               }, {
+                  "identifier" : "timing",
+                  "expression" : {
+                     "path" : "timing",
+                     "type" : "Property",
+                     "source" : {
+                        "name" : "dosage",
+                        "type" : "QueryLetRef"
+                     }
+                  }
+               }, {
+                  "identifier" : "frequency",
+                  "expression" : {
+                     "type" : "Coalesce",
+                     "operand" : [ {
+                        "path" : "frequencyMax",
+                        "type" : "Property",
+                        "source" : {
+                           "path" : "repeat",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "timing",
+                              "type" : "QueryLetRef"
+                           }
+                        }
+                     }, {
+                        "path" : "frequency",
+                        "type" : "Property",
+                        "source" : {
+                           "path" : "repeat",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "timing",
+                              "type" : "QueryLetRef"
+                           }
+                        }
+                     } ]
+                  }
+               }, {
+                  "identifier" : "period",
+                  "expression" : {
+                     "classType" : "{urn:hl7-org:elm-types:r1}Quantity",
+                     "type" : "Instance",
+                     "element" : [ {
+                        "name" : "value",
+                        "value" : {
+                           "name" : "ToDecimal",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "path" : "period",
+                              "type" : "Property",
+                              "source" : {
+                                 "path" : "repeat",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "timing",
+                                    "type" : "QueryLetRef"
+                                 }
+                              }
+                           } ]
+                        }
+                     }, {
+                        "name" : "unit",
+                        "value" : {
+                           "path" : "value",
+                           "type" : "Property",
+                           "source" : {
+                              "path" : "periodUnit",
+                              "type" : "Property",
+                              "source" : {
+                                 "path" : "repeat",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "timing",
+                                    "type" : "QueryLetRef"
+                                 }
+                              }
+                           }
+                        }
+                     } ]
+                  }
+               }, {
+                  "identifier" : "dosesPerDay",
+                  "expression" : {
+                     "type" : "Coalesce",
+                     "operand" : [ {
+                        "name" : "ToDaily",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "name" : "ToInteger",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "name" : "frequency",
+                              "type" : "QueryLetRef"
+                           } ]
+                        }, {
+                           "name" : "period",
+                           "type" : "QueryLetRef"
+                        } ]
+                     }, {
+                        "type" : "ToDecimal",
+                        "operand" : {
+                           "type" : "Count",
+                           "source" : {
+                              "path" : "timeOfDay",
+                              "type" : "Property",
+                              "source" : {
+                                 "path" : "repeat",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "timing",
+                                    "type" : "QueryLetRef"
+                                 }
+                              }
+                           }
+                        }
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "1.0",
+                        "type" : "Literal"
+                     } ]
+                  }
+               }, {
+                  "identifier" : "startDate",
+                  "expression" : {
+                     "type" : "Coalesce",
+                     "operand" : [ {
+                        "path" : "whenHandedOver",
+                        "scope" : "D",
+                        "type" : "Property"
+                     }, {
+                        "path" : "whenPrepared",
+                        "scope" : "D",
+                        "type" : "Property"
+                     } ]
+                  }
+               } ],
+               "relationship" : [ ],
+               "return" : {
+                  "expression" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "name" : "ToDateTime",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "name" : "startDate",
+                           "type" : "QueryLetRef"
+                        } ]
+                     },
+                     "high" : {
+                        "type" : "Add",
+                        "operand" : [ {
+                           "name" : "ToDateTime",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "name" : "startDate",
+                              "type" : "QueryLetRef"
+                           } ]
+                        }, {
+                           "type" : "Coalesce",
+                           "operand" : [ {
+                              "name" : "ToQuantity",
+                              "libraryName" : "FHIRHelpers",
+                              "type" : "FunctionRef",
+                              "operand" : [ {
+                                 "path" : "daysSupply",
+                                 "scope" : "D",
+                                 "type" : "Property"
+                              } ]
+                           }, {
+                              "type" : "Divide",
+                              "operand" : [ {
+                                 "name" : "ToQuantity",
+                                 "libraryName" : "FHIRHelpers",
+                                 "type" : "FunctionRef",
+                                 "operand" : [ {
+                                    "path" : "quantity",
+                                    "scope" : "D",
+                                    "type" : "Property"
+                                 } ]
+                              }, {
+                                 "type" : "Multiply",
+                                 "operand" : [ {
+                                    "name" : "dose",
+                                    "type" : "QueryLetRef"
+                                 }, {
+                                    "type" : "ToQuantity",
+                                    "operand" : {
+                                       "name" : "dosesPerDay",
+                                       "type" : "QueryLetRef"
+                                    }
+                                 } ]
+                              } ]
+                           } ]
+                        } ]
+                     }
+                  }
+               }
+            },
+            "operand" : [ {
+               "name" : "Dispense",
+               "operandTypeSpecifier" : {
+                  "name" : "{http://hl7.org/fhir}MedicationDispense",
+                  "type" : "NamedTypeSpecifier"
+               }
+            } ]
+         }, {
+            "name" : "TherapeuticDuration",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "type" : "FunctionDef",
+            "expression" : {
+               "value" : 14,
+               "unit" : "days",
+               "type" : "Quantity"
+            },
+            "operand" : [ {
+               "name" : "medication",
+               "operandTypeSpecifier" : {
+                  "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                  "type" : "NamedTypeSpecifier"
+               }
+            } ]
+         }, {
+            "name" : "MedicationAdministrationPeriod",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "type" : "FunctionDef",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "M",
+                  "expression" : {
+                     "name" : "Administration",
+                     "type" : "OperandRef"
+                  }
+               } ],
+               "let" : [ {
+                  "identifier" : "therapeuticDuration",
+                  "expression" : {
+                     "name" : "TherapeuticDuration",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "name" : "ToConcept",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "asType" : "{http://hl7.org/fhir}CodeableConcept",
+                           "type" : "As",
+                           "operand" : {
+                              "path" : "medication",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "Administration",
+                                 "type" : "OperandRef"
+                              }
+                           }
+                        } ]
+                     } ]
+                  }
+               }, {
+                  "identifier" : "startDate",
+                  "expression" : {
+                     "type" : "Start",
+                     "operand" : {
+                        "name" : "ToInterval",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "asType" : "{http://hl7.org/fhir}Period",
+                           "type" : "As",
+                           "operand" : {
+                              "path" : "effective",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "Administration",
+                                 "type" : "OperandRef"
+                              }
+                           }
+                        } ]
+                     }
+                  }
+               } ],
+               "relationship" : [ ],
+               "return" : {
+                  "expression" : {
+                     "type" : "If",
+                     "condition" : {
+                        "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                        "type" : "As",
+                        "operand" : {
+                           "type" : "And",
+                           "operand" : [ {
+                              "type" : "Not",
+                              "operand" : {
+                                 "type" : "IsNull",
+                                 "operand" : {
+                                    "name" : "startDate",
+                                    "type" : "QueryLetRef"
+                                 }
+                              }
+                           }, {
+                              "type" : "Not",
+                              "operand" : {
+                                 "type" : "IsNull",
+                                 "operand" : {
+                                    "name" : "therapeuticDuration",
+                                    "type" : "QueryLetRef"
+                                 }
+                              }
+                           } ]
+                        }
+                     },
+                     "then" : {
+                        "lowClosed" : true,
+                        "highClosed" : true,
+                        "type" : "Interval",
+                        "low" : {
+                           "name" : "startDate",
+                           "type" : "QueryLetRef"
+                        },
+                        "high" : {
+                           "type" : "Add",
+                           "operand" : [ {
+                              "name" : "startDate",
+                              "type" : "QueryLetRef"
+                           }, {
+                              "name" : "therapeuticDuration",
+                              "type" : "QueryLetRef"
+                           } ]
+                        }
+                     },
+                     "else" : {
+                        "type" : "As",
+                        "operand" : {
+                           "type" : "Null"
+                        },
+                        "asTypeSpecifier" : {
+                           "type" : "IntervalTypeSpecifier",
+                           "pointType" : {
+                              "name" : "{urn:hl7-org:elm-types:r1}DateTime",
+                              "type" : "NamedTypeSpecifier"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "operand" : [ {
+               "name" : "Administration",
+               "operandTypeSpecifier" : {
+                  "name" : "{http://hl7.org/fhir}MedicationAdministration",
+                  "type" : "NamedTypeSpecifier"
+               }
+            } ]
+         }, {
+            "name" : "CumulativeDuration",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "type" : "FunctionDef",
+            "expression" : {
+               "type" : "Sum",
+               "source" : {
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "X",
+                     "expression" : {
+                        "type" : "Collapse",
+                        "operand" : [ {
+                           "name" : "Intervals",
+                           "type" : "OperandRef"
+                        }, {
+                           "value" : 1.0,
+                           "unit" : "day",
+                           "type" : "Quantity"
+                        } ]
+                     }
+                  } ],
+                  "relationship" : [ ],
+                  "return" : {
+                     "distinct" : false,
+                     "expression" : {
+                        "precision" : "Day",
+                        "type" : "DifferenceBetween",
+                        "operand" : [ {
+                           "type" : "Start",
+                           "operand" : {
+                              "name" : "X",
+                              "type" : "AliasRef"
+                           }
+                        }, {
+                           "type" : "End",
+                           "operand" : {
+                              "name" : "X",
+                              "type" : "AliasRef"
+                           }
+                        } ]
+                     }
+                  }
+               }
+            },
+            "operand" : [ {
+               "name" : "Intervals",
+               "operandTypeSpecifier" : {
+                  "type" : "ListTypeSpecifier",
+                  "elementType" : {
+                     "type" : "IntervalTypeSpecifier",
+                     "pointType" : {
+                        "name" : "{urn:hl7-org:elm-types:r1}DateTime",
+                        "type" : "NamedTypeSpecifier"
+                     }
+                  }
+               }
+            } ]
+         }, {
+            "name" : "RolloutIntervals",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "type" : "FunctionDef",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "I",
+                  "expression" : {
+                     "name" : "intervals",
+                     "type" : "OperandRef"
+                  }
+               } ],
+               "relationship" : [ ],
+               "aggregate" : {
+                  "identifier" : "R",
+                  "expression" : {
+                     "type" : "Union",
+                     "operand" : [ {
+                        "name" : "R",
+                        "type" : "QueryLetRef"
+                     }, {
+                        "type" : "List",
+                        "element" : [ {
+                           "type" : "Query",
+                           "source" : [ {
+                              "alias" : "X",
+                              "expression" : {
+                                 "name" : "I",
+                                 "type" : "AliasRef"
+                              }
+                           } ],
+                           "let" : [ {
+                              "identifier" : "S",
+                              "expression" : {
+                                 "type" : "Max",
+                                 "source" : {
+                                    "type" : "List",
+                                    "element" : [ {
+                                       "type" : "Add",
+                                       "operand" : [ {
+                                          "type" : "End",
+                                          "operand" : {
+                                             "type" : "Last",
+                                             "source" : {
+                                                "name" : "R",
+                                                "type" : "QueryLetRef"
+                                             }
+                                          }
+                                       }, {
+                                          "value" : 1,
+                                          "unit" : "day",
+                                          "type" : "Quantity"
+                                       } ]
+                                    }, {
+                                       "type" : "Start",
+                                       "operand" : {
+                                          "name" : "X",
+                                          "type" : "AliasRef"
+                                       }
+                                    } ]
+                                 }
+                              }
+                           }, {
+                              "identifier" : "E",
+                              "expression" : {
+                                 "type" : "Add",
+                                 "operand" : [ {
+                                    "name" : "S",
+                                    "type" : "QueryLetRef"
+                                 }, {
+                                    "type" : "ToQuantity",
+                                    "operand" : {
+                                       "precision" : "Day",
+                                       "type" : "DurationBetween",
+                                       "operand" : [ {
+                                          "type" : "Start",
+                                          "operand" : {
+                                             "name" : "X",
+                                             "type" : "AliasRef"
+                                          }
+                                       }, {
+                                          "type" : "End",
+                                          "operand" : {
+                                             "name" : "X",
+                                             "type" : "AliasRef"
+                                          }
+                                       } ]
+                                    }
+                                 } ]
+                              }
+                           } ],
+                           "relationship" : [ ],
+                           "return" : {
+                              "expression" : {
+                                 "lowClosed" : true,
+                                 "highClosed" : true,
+                                 "type" : "Interval",
+                                 "low" : {
+                                    "name" : "S",
+                                    "type" : "QueryLetRef"
+                                 },
+                                 "high" : {
+                                    "name" : "E",
+                                    "type" : "QueryLetRef"
+                                 }
+                              }
+                           }
+                        } ]
+                     } ]
+                  },
+                  "starting" : {
+                     "strict" : false,
+                     "type" : "As",
+                     "operand" : {
+                        "type" : "Null"
+                     },
+                     "asTypeSpecifier" : {
+                        "type" : "ListTypeSpecifier",
+                        "elementType" : {
+                           "type" : "IntervalTypeSpecifier",
+                           "pointType" : {
+                              "name" : "{urn:hl7-org:elm-types:r1}DateTime",
+                              "type" : "NamedTypeSpecifier"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "operand" : [ {
+               "name" : "intervals",
+               "operandTypeSpecifier" : {
+                  "type" : "ListTypeSpecifier",
+                  "elementType" : {
+                     "type" : "IntervalTypeSpecifier",
+                     "pointType" : {
+                        "name" : "{urn:hl7-org:elm-types:r1}DateTime",
+                        "type" : "NamedTypeSpecifier"
+                     }
+                  }
+               }
+            } ]
+         }, {
+            "name" : "MedicationPeriod",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "type" : "FunctionDef",
+            "expression" : {
+               "type" : "Case",
+               "caseItem" : [ {
+                  "when" : {
+                     "type" : "Is",
+                     "operand" : {
+                        "name" : "medication",
+                        "type" : "OperandRef"
+                     },
+                     "isTypeSpecifier" : {
+                        "name" : "{http://hl7.org/fhir}MedicationRequest",
+                        "type" : "NamedTypeSpecifier"
+                     }
+                  },
+                  "then" : {
+                     "name" : "MedicationRequestPeriod",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "asType" : "{http://hl7.org/fhir}MedicationRequest",
+                        "type" : "As",
+                        "operand" : {
+                           "name" : "medication",
+                           "type" : "OperandRef"
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "type" : "Is",
+                     "operand" : {
+                        "name" : "medication",
+                        "type" : "OperandRef"
+                     },
+                     "isTypeSpecifier" : {
+                        "name" : "{http://hl7.org/fhir}MedicationDispense",
+                        "type" : "NamedTypeSpecifier"
+                     }
+                  },
+                  "then" : {
+                     "name" : "MedicationDispensePeriod",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "asType" : "{http://hl7.org/fhir}MedicationDispense",
+                        "type" : "As",
+                        "operand" : {
+                           "name" : "medication",
+                           "type" : "OperandRef"
+                        }
+                     } ]
+                  }
+               }, {
+                  "when" : {
+                     "type" : "Is",
+                     "operand" : {
+                        "name" : "medication",
+                        "type" : "OperandRef"
+                     },
+                     "isTypeSpecifier" : {
+                        "name" : "{http://hl7.org/fhir}MedicationAdministration",
+                        "type" : "NamedTypeSpecifier"
+                     }
+                  },
+                  "then" : {
+                     "name" : "MedicationAdministrationPeriod",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "asType" : "{http://hl7.org/fhir}MedicationAdministration",
+                        "type" : "As",
+                        "operand" : {
+                           "name" : "medication",
+                           "type" : "OperandRef"
+                        }
+                     } ]
+                  }
+               } ],
+               "else" : {
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Null"
+                  },
+                  "asTypeSpecifier" : {
+                     "type" : "IntervalTypeSpecifier",
+                     "pointType" : {
+                        "name" : "{urn:hl7-org:elm-types:r1}DateTime",
+                        "type" : "NamedTypeSpecifier"
+                     }
+                  }
+               }
+            },
+            "operand" : [ {
+               "name" : "medication",
+               "operandTypeSpecifier" : {
+                  "type" : "ChoiceTypeSpecifier",
+                  "choice" : [ {
+                     "name" : "{http://hl7.org/fhir}MedicationRequest",
+                     "type" : "NamedTypeSpecifier"
+                  }, {
+                     "name" : "{http://hl7.org/fhir}MedicationDispense",
+                     "type" : "NamedTypeSpecifier"
+                  }, {
+                     "name" : "{http://hl7.org/fhir}MedicationAdministration",
+                     "type" : "NamedTypeSpecifier"
+                  } ]
+               }
+            } ]
+         }, {
+            "name" : "CumulativeMedicationDuration",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "type" : "FunctionDef",
+            "expression" : {
+               "name" : "CumulativeDuration",
+               "type" : "FunctionRef",
+               "operand" : [ {
+                  "type" : "Union",
+                  "operand" : [ {
+                     "type" : "Query",
+                     "source" : [ {
+                        "alias" : "M",
+                        "expression" : {
+                           "name" : "Medications",
+                           "type" : "OperandRef"
+                        }
+                     } ],
+                     "relationship" : [ ],
+                     "where" : {
+                        "type" : "Is",
+                        "operand" : {
+                           "name" : "M",
+                           "type" : "AliasRef"
+                        },
+                        "isTypeSpecifier" : {
+                           "name" : "{http://hl7.org/fhir}MedicationRequest",
+                           "type" : "NamedTypeSpecifier"
+                        }
+                     },
+                     "return" : {
+                        "expression" : {
+                           "name" : "MedicationPeriod",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "name" : "M",
+                              "type" : "AliasRef"
+                           } ]
+                        }
+                     }
+                  }, {
+                     "name" : "RolloutIntervals",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "type" : "Query",
+                        "source" : [ {
+                           "alias" : "M",
+                           "expression" : {
+                              "name" : "Medications",
+                              "type" : "OperandRef"
+                           }
+                        } ],
+                        "relationship" : [ ],
+                        "where" : {
+                           "type" : "Or",
+                           "operand" : [ {
+                              "type" : "Is",
+                              "operand" : {
+                                 "name" : "M",
+                                 "type" : "AliasRef"
+                              },
+                              "isTypeSpecifier" : {
+                                 "name" : "{http://hl7.org/fhir}MedicationDispense",
+                                 "type" : "NamedTypeSpecifier"
+                              }
+                           }, {
+                              "type" : "Is",
+                              "operand" : {
+                                 "name" : "M",
+                                 "type" : "AliasRef"
+                              },
+                              "isTypeSpecifier" : {
+                                 "name" : "{http://hl7.org/fhir}MedicationAdministration",
+                                 "type" : "NamedTypeSpecifier"
+                              }
+                           } ]
+                        },
+                        "return" : {
+                           "expression" : {
+                              "name" : "MedicationPeriod",
+                              "type" : "FunctionRef",
+                              "operand" : [ {
+                                 "name" : "M",
+                                 "type" : "AliasRef"
+                              } ]
+                           }
+                        }
+                     } ]
+                  } ]
+               } ]
+            },
+            "operand" : [ {
+               "name" : "Medications",
+               "operandTypeSpecifier" : {
+                  "type" : "ListTypeSpecifier",
+                  "elementType" : {
+                     "type" : "ChoiceTypeSpecifier",
+                     "choice" : [ {
+                        "name" : "{http://hl7.org/fhir}MedicationRequest",
+                        "type" : "NamedTypeSpecifier"
+                     }, {
+                        "name" : "{http://hl7.org/fhir}MedicationDispense",
+                        "type" : "NamedTypeSpecifier"
+                     }, {
+                        "name" : "{http://hl7.org/fhir}MedicationAdministration",
+                        "type" : "NamedTypeSpecifier"
+                     } ]
+                  }
+               }
+            } ]
+         } ]
+      }
+   }
+}
+
