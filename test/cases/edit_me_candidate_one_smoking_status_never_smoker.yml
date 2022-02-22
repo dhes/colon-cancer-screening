@@ -1,16 +1,13 @@
 name: candidate_one_smoking_status_never_smoker
 data:
   - resourceType: Patient
-    name: Joe Smith
+    name: Peter Barnes
     gender: male
-# Unless today is 2021-11-10
-# ...please adjust the birthdate to make this patient's   
-# ...age 60 years. 
-    birthDate: 1951-11-10
+    birthDate: 1953-06-05
   - resourceType: Observation
     code: 'LOINC#72166-2 Tobacco smoking status'
     valueCodeableConcept: 'SNOMEDCT#266919005 Never smoked tobacco (finding)'
-    issued: 2019-04-05T00:00:00.000Z
+    issued: 2022-04-05T00:00:00.000Z
 results:
   Notification: null
   Recommendation: null

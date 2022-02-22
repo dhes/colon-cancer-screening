@@ -1973,10 +1973,11 @@
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
-               "type" : "Or",
-               "operand" : [ {
-                  "type" : "Or",
-                  "operand" : [ {
+               "type" : "If",
+               "condition" : {
+                  "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "type" : "As",
+                  "operand" : {
                      "type" : "Or",
                      "operand" : [ {
                         "type" : "Or",
@@ -1997,63 +1998,79 @@
                                              "operand" : [ {
                                                 "type" : "Or",
                                                 "operand" : [ {
-                                                   "name" : "HasCVD",
-                                                   "type" : "ExpressionRef"
+                                                   "type" : "Or",
+                                                   "operand" : [ {
+                                                      "type" : "Or",
+                                                      "operand" : [ {
+                                                         "name" : "HasCVD",
+                                                         "type" : "ExpressionRef"
+                                                      }, {
+                                                         "name" : "HasHadCVDProcedures",
+                                                         "type" : "ExpressionRef"
+                                                      } ]
+                                                   }, {
+                                                      "type" : "Greater",
+                                                      "operand" : [ {
+                                                         "name" : "MostRecentValidLDLResult",
+                                                         "type" : "ExpressionRef"
+                                                      }, {
+                                                         "value" : 190,
+                                                         "unit" : "mg/dL",
+                                                         "type" : "Quantity"
+                                                      } ]
+                                                   } ]
                                                 }, {
-                                                   "name" : "HasHadCVDProcedures",
+                                                   "name" : "HasFamilialHypercholesterolemia",
                                                    "type" : "ExpressionRef"
                                                 } ]
                                              }, {
-                                                "type" : "Greater",
-                                                "operand" : [ {
-                                                   "name" : "MostRecentValidLDLResult",
-                                                   "type" : "ExpressionRef"
-                                                }, {
-                                                   "value" : 190,
-                                                   "unit" : "mg/dL",
-                                                   "type" : "Quantity"
-                                                } ]
+                                                "name" : "IsPregnant",
+                                                "type" : "ExpressionRef"
                                              } ]
                                           }, {
-                                             "name" : "HasFamilialHypercholesterolemia",
+                                             "name" : "IsBreastfeeding",
                                              "type" : "ExpressionRef"
                                           } ]
                                        }, {
-                                          "name" : "IsPregnant",
+                                          "name" : "HasEndStageRenalDisease",
                                           "type" : "ExpressionRef"
                                        } ]
                                     }, {
-                                       "name" : "IsBreastfeeding",
+                                       "name" : "HasHadRecentEndStageRenalDiseaseEncounter",
                                        "type" : "ExpressionRef"
                                     } ]
                                  }, {
-                                    "name" : "HasEndStageRenalDisease",
+                                    "name" : "OnDialysis",
                                     "type" : "ExpressionRef"
                                  } ]
                               }, {
-                                 "name" : "HasHadRecentEndStageRenalDiseaseEncounter",
+                                 "name" : "DependentUponDialysis",
                                  "type" : "ExpressionRef"
                               } ]
                            }, {
-                              "name" : "OnDialysis",
+                              "name" : "HasCirrhosis",
                               "type" : "ExpressionRef"
                            } ]
                         }, {
-                           "name" : "DependentUponDialysis",
+                           "name" : "OnStatinTherapy",
                            "type" : "ExpressionRef"
                         } ]
                      }, {
-                        "name" : "HasCirrhosis",
+                        "name" : "HasRhabdomyolysis",
                         "type" : "ExpressionRef"
                      } ]
-                  }, {
-                     "name" : "OnStatinTherapy",
-                     "type" : "ExpressionRef"
-                  } ]
-               }, {
-                  "name" : "HasRhabdomyolysis",
-                  "type" : "ExpressionRef"
-               } ]
+                  }
+               },
+               "then" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "value" : "true",
+                  "type" : "Literal"
+               },
+               "else" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "value" : "false",
+                  "type" : "Literal"
+               }
             }
          }, {
             "name" : "EnumerateExclusionCritera",

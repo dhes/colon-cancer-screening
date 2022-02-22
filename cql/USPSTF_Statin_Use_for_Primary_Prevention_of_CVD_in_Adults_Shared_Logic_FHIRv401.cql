@@ -469,6 +469,8 @@ define MeetsExclusionCriteria:
   // Patients who have a CVD diagnosis are not
   // are not considered to be in the target population for the USPSTF statin
   // recommendations, since they are not eligible for primary prevention of CVD.
+  // DH I added this line. I want true or false, not true or null. 
+  if (
   HasCVD
   // Patients who have had procedures to treat CVD, implying that the patients
   // have a CVD diagnosis, are not considered to be in the target population for
@@ -500,7 +502,8 @@ define MeetsExclusionCriteria:
   // A recommendation for a statin should be ommitted if a patient is already on
   // a statin medication.
   or OnStatinTherapy
-  or HasRhabdomyolysis
+  // DH I added ') then true else false'. otherwise when all are not true is null
+  or HasRhabdomyolysis) then true else false
 
 define EnumerateExclusionCritera:
   if MeetsExclusionCriteria then

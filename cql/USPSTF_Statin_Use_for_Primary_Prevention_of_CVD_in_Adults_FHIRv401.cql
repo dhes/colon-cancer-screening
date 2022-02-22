@@ -245,8 +245,10 @@ define MostRecentValidCVDRiskAssessmentResultIsNull:
   MostRecentValidCVDRiskAssessmentResult is null
 
 // Set up a list of needed information for card 2
+// the card only appears if more information is needed and the
+// ...patient is not already excluded.
 define NeedMoreInformation: 
-  if InDemographicAndHasErrors then
+  if SharedLogic.InDemographic and not MeetsExclusionCriteria then // before this was 'if InDemographicAndHasErrors and not MeetsExclusionCriteria then'
     Combine(List{
       if SharedLogic.MostRecentValidLDLResult is null then '- LDL cholesterol within the last six years' else null, 
       if SharedLogic.MostRecentValidHDLResult is null then '- HDL cholesterol within the last six years' else null,

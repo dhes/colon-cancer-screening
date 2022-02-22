@@ -719,8 +719,18 @@
                   "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
                   "type" : "As",
                   "operand" : {
-                     "name" : "InDemographicAndHasErrors",
-                     "type" : "ExpressionRef"
+                     "type" : "And",
+                     "operand" : [ {
+                        "name" : "InDemographic",
+                        "libraryName" : "SharedLogic",
+                        "type" : "ExpressionRef"
+                     }, {
+                        "type" : "Not",
+                        "operand" : {
+                           "name" : "MeetsExclusionCriteria",
+                           "type" : "ExpressionRef"
+                        }
+                     } ]
                   }
                },
                "then" : {
