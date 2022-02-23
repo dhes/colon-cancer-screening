@@ -3,17 +3,6 @@
       "annotation" : [ {
          "translatorOptions" : "",
          "type" : "CqlToElmInfo"
-      }, {
-         "libraryId" : "MATGlobalCommonFunctionsFHIR4",
-         "libraryVersion" : "6.1.000",
-         "startLine" : 338,
-         "startChar" : 19,
-         "endLine" : 338,
-         "endChar" : 53,
-         "message" : "Could not resolve membership operator for terminology target of the retrieve.",
-         "errorType" : "semantic",
-         "errorSeverity" : "warning",
-         "type" : "CqlToElmError"
       } ],
       "identifier" : {
          "id" : "ColorectalCancerScreeningsFHIR",
@@ -38,47 +27,6 @@
             "localIdentifier" : "FHIRHelpers",
             "path" : "FHIRHelpers",
             "version" : "4.0.001"
-         }, {
-            "localIdentifier" : "SDE",
-            "path" : "SupplementalDataElementsFHIR4",
-            "version" : "2.0.000"
-         }, {
-            "localIdentifier" : "Global",
-            "path" : "MATGlobalCommonFunctionsFHIR4",
-            "version" : "6.1.000"
-         }, {
-            "localIdentifier" : "AdultOutpatientEncounters",
-            "path" : "AdultOutpatientEncountersFHIR4",
-            "version" : "2.2.000"
-         }, {
-            "localIdentifier" : "Hospice",
-            "path" : "HospiceFHIR4",
-            "version" : "2.3.000"
-         }, {
-            "localIdentifier" : "FrailtyLTI",
-            "path" : "AdvancedIllnessandFrailtyExclusionECQMFHIR4",
-            "version" : "5.17.000"
-         }, {
-            "localIdentifier" : "PalliativeCare",
-            "path" : "PalliativeCareFHIR",
-            "version" : "0.6.000"
-         }, {
-            "localIdentifier" : "CMD",
-            "path" : "CumulativeMedicationDurationFHIR4",
-            "version" : "1.0.000"
-         } ]
-      },
-      "parameters" : {
-         "def" : [ {
-            "name" : "Measurement Period",
-            "accessLevel" : "Public",
-            "parameterTypeSpecifier" : {
-               "type" : "IntervalTypeSpecifier",
-               "pointType" : {
-                  "name" : "{urn:hl7-org:elm-types:r1}DateTime",
-                  "type" : "NamedTypeSpecifier"
-               }
-            }
          } ]
       },
       "codeSystems" : {
@@ -240,206 +188,6 @@
                }
             }
          }, {
-            "name" : "SDE Ethnicity",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "name" : "SDE Ethnicity",
-               "libraryName" : "SDE",
-               "type" : "ExpressionRef"
-            }
-         }, {
-            "name" : "SDE Payer",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "name" : "SDE Payer",
-               "libraryName" : "SDE",
-               "type" : "ExpressionRef"
-            }
-         }, {
-            "name" : "SDE Race",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "name" : "SDE Race",
-               "libraryName" : "SDE",
-               "type" : "ExpressionRef"
-            }
-         }, {
-            "name" : "SDE Sex",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "name" : "SDE Sex",
-               "libraryName" : "SDE",
-               "type" : "ExpressionRef"
-            }
-         }, {
-            "name" : "Telehealth Services",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "Query",
-               "source" : [ {
-                  "alias" : "TelehealthEncounter",
-                  "expression" : {
-                     "type" : "Union",
-                     "operand" : [ {
-                        "dataType" : "{http://hl7.org/fhir}Encounter",
-                        "templateId" : "http://hl7.org/fhir/StructureDefinition/Encounter",
-                        "codeProperty" : "type",
-                        "codeComparator" : "in",
-                        "type" : "Retrieve",
-                        "codes" : {
-                           "name" : "Online Assessments",
-                           "type" : "ValueSetRef"
-                        }
-                     }, {
-                        "dataType" : "{http://hl7.org/fhir}Encounter",
-                        "templateId" : "http://hl7.org/fhir/StructureDefinition/Encounter",
-                        "codeProperty" : "type",
-                        "codeComparator" : "in",
-                        "type" : "Retrieve",
-                        "codes" : {
-                           "name" : "Telephone Visits",
-                           "type" : "ValueSetRef"
-                        }
-                     } ]
-                  }
-               } ],
-               "relationship" : [ ],
-               "where" : {
-                  "type" : "And",
-                  "operand" : [ {
-                     "type" : "Equal",
-                     "operand" : [ {
-                        "name" : "ToString",
-                        "libraryName" : "FHIRHelpers",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "path" : "status",
-                           "scope" : "TelehealthEncounter",
-                           "type" : "Property"
-                        } ]
-                     }, {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "finished",
-                        "type" : "Literal"
-                     } ]
-                  }, {
-                     "type" : "IncludedIn",
-                     "operand" : [ {
-                        "name" : "Normalize Interval",
-                        "libraryName" : "Global",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "type" : "As",
-                           "operand" : {
-                              "path" : "period",
-                              "scope" : "TelehealthEncounter",
-                              "type" : "Property"
-                           },
-                           "asTypeSpecifier" : {
-                              "type" : "ChoiceTypeSpecifier",
-                              "choice" : [ {
-                                 "name" : "{http://hl7.org/fhir}dateTime",
-                                 "type" : "NamedTypeSpecifier"
-                              }, {
-                                 "name" : "{http://hl7.org/fhir}Period",
-                                 "type" : "NamedTypeSpecifier"
-                              }, {
-                                 "name" : "{http://hl7.org/fhir}Timing",
-                                 "type" : "NamedTypeSpecifier"
-                              }, {
-                                 "name" : "{http://hl7.org/fhir}instant",
-                                 "type" : "NamedTypeSpecifier"
-                              }, {
-                                 "name" : "{http://hl7.org/fhir}string",
-                                 "type" : "NamedTypeSpecifier"
-                              }, {
-                                 "name" : "{http://hl7.org/fhir}Age",
-                                 "type" : "NamedTypeSpecifier"
-                              }, {
-                                 "name" : "{http://hl7.org/fhir}Range",
-                                 "type" : "NamedTypeSpecifier"
-                              } ]
-                           }
-                        } ]
-                     }, {
-                        "name" : "Measurement Period",
-                        "type" : "ParameterRef"
-                     } ]
-                  } ]
-               }
-            }
-         }, {
-            "name" : "Initial Population",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "And",
-               "operand" : [ {
-                  "type" : "In",
-                  "operand" : [ {
-                     "precision" : "Year",
-                     "type" : "CalculateAgeAt",
-                     "operand" : [ {
-                        "path" : "birthDate.value",
-                        "type" : "Property",
-                        "source" : {
-                           "name" : "Patient",
-                           "type" : "ExpressionRef"
-                        }
-                     }, {
-                        "type" : "DateFrom",
-                        "operand" : {
-                           "type" : "Start",
-                           "operand" : {
-                              "name" : "Measurement Period",
-                              "type" : "ParameterRef"
-                           }
-                        }
-                     } ]
-                  }, {
-                     "lowClosed" : true,
-                     "highClosed" : false,
-                     "type" : "Interval",
-                     "low" : {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                        "value" : "50",
-                        "type" : "Literal"
-                     },
-                     "high" : {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                        "value" : "75",
-                        "type" : "Literal"
-                     }
-                  } ]
-               }, {
-                  "type" : "Exists",
-                  "operand" : {
-                     "type" : "Union",
-                     "operand" : [ {
-                        "name" : "Qualifying Encounters",
-                        "libraryName" : "AdultOutpatientEncounters",
-                        "type" : "ExpressionRef"
-                     }, {
-                        "name" : "Telehealth Services",
-                        "type" : "ExpressionRef"
-                     } ]
-                  }
-               } ]
-            }
-         }, {
-            "name" : "Denominator",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "name" : "Initial Population",
-               "type" : "ExpressionRef"
-            }
-         }, {
             "name" : "Flexible Sigmoidoscopy Performed",
             "context" : "Patient",
             "accessLevel" : "Public",
@@ -461,78 +209,20 @@
                } ],
                "relationship" : [ ],
                "where" : {
-                  "type" : "And",
+                  "type" : "Equal",
                   "operand" : [ {
-                     "type" : "Equal",
+                     "name" : "ToString",
+                     "libraryName" : "FHIRHelpers",
+                     "type" : "FunctionRef",
                      "operand" : [ {
-                        "name" : "ToString",
-                        "libraryName" : "FHIRHelpers",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "path" : "status",
-                           "scope" : "FlexibleSigmoidoscopy",
-                           "type" : "Property"
-                        } ]
-                     }, {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "completed",
-                        "type" : "Literal"
+                        "path" : "status",
+                        "scope" : "FlexibleSigmoidoscopy",
+                        "type" : "Property"
                      } ]
                   }, {
-                     "type" : "And",
-                     "operand" : [ {
-                        "type" : "In",
-                        "operand" : [ {
-                           "type" : "End",
-                           "operand" : {
-                              "name" : "Normalize Interval",
-                              "libraryName" : "Global",
-                              "type" : "FunctionRef",
-                              "operand" : [ {
-                                 "path" : "performed",
-                                 "scope" : "FlexibleSigmoidoscopy",
-                                 "type" : "Property"
-                              } ]
-                           }
-                        }, {
-                           "lowClosed" : true,
-                           "highClosed" : true,
-                           "type" : "Interval",
-                           "low" : {
-                              "type" : "Subtract",
-                              "operand" : [ {
-                                 "type" : "End",
-                                 "operand" : {
-                                    "name" : "Measurement Period",
-                                    "type" : "ParameterRef"
-                                 }
-                              }, {
-                                 "value" : 5,
-                                 "unit" : "years",
-                                 "type" : "Quantity"
-                              } ]
-                           },
-                           "high" : {
-                              "type" : "End",
-                              "operand" : {
-                                 "name" : "Measurement Period",
-                                 "type" : "ParameterRef"
-                              }
-                           }
-                        } ]
-                     }, {
-                        "type" : "Not",
-                        "operand" : {
-                           "type" : "IsNull",
-                           "operand" : {
-                              "type" : "End",
-                              "operand" : {
-                                 "name" : "Measurement Period",
-                                 "type" : "ParameterRef"
-                              }
-                           }
-                        }
-                     } ]
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "completed",
+                     "type" : "Literal"
                   } ]
                }
             }
@@ -558,44 +248,20 @@
                } ],
                "relationship" : [ ],
                "where" : {
-                  "type" : "And",
+                  "type" : "Equal",
                   "operand" : [ {
-                     "type" : "Equal",
+                     "name" : "ToString",
+                     "libraryName" : "FHIRHelpers",
+                     "type" : "FunctionRef",
                      "operand" : [ {
-                        "name" : "ToString",
-                        "libraryName" : "FHIRHelpers",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "path" : "status",
-                           "scope" : "Colectomy",
-                           "type" : "Property"
-                        } ]
-                     }, {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "completed",
-                        "type" : "Literal"
+                        "path" : "status",
+                        "scope" : "Colectomy",
+                        "type" : "Property"
                      } ]
                   }, {
-                     "type" : "SameOrBefore",
-                     "operand" : [ {
-                        "type" : "End",
-                        "operand" : {
-                           "name" : "Normalize Interval",
-                           "libraryName" : "Global",
-                           "type" : "FunctionRef",
-                           "operand" : [ {
-                              "path" : "performed",
-                              "scope" : "Colectomy",
-                              "type" : "Property"
-                           } ]
-                        }
-                     }, {
-                        "type" : "End",
-                        "operand" : {
-                           "name" : "Measurement Period",
-                           "type" : "ParameterRef"
-                        }
-                     } ]
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "completed",
+                     "type" : "Literal"
                   } ]
                }
             }
@@ -625,94 +291,76 @@
                   "operand" : [ {
                      "type" : "And",
                      "operand" : [ {
-                        "type" : "And",
+                        "type" : "In",
                         "operand" : [ {
-                           "type" : "In",
+                           "name" : "ToString",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
                            "operand" : [ {
-                              "name" : "ToString",
-                              "libraryName" : "FHIRHelpers",
-                              "type" : "FunctionRef",
-                              "operand" : [ {
-                                 "path" : "status",
-                                 "scope" : "FecalOccultResult",
-                                 "type" : "Property"
-                              } ]
-                           }, {
-                              "type" : "List",
-                              "element" : [ {
-                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                                 "value" : "final",
-                                 "type" : "Literal"
-                              }, {
-                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                                 "value" : "amended",
-                                 "type" : "Literal"
-                              }, {
-                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                                 "value" : "corrected",
-                                 "type" : "Literal"
-                              } ]
-                           } ]
-                        }, {
-                           "type" : "Exists",
-                           "operand" : {
-                              "type" : "Query",
-                              "source" : [ {
-                                 "alias" : "FecalOccultResultCategory",
-                                 "expression" : {
-                                    "path" : "category",
-                                    "scope" : "FecalOccultResult",
-                                    "type" : "Property"
-                                 }
-                              } ],
-                              "relationship" : [ ],
-                              "where" : {
-                                 "type" : "In",
-                                 "operand" : [ {
-                                    "name" : "laboratory",
-                                    "type" : "CodeRef"
-                                 }, {
-                                    "path" : "codes",
-                                    "type" : "Property",
-                                    "source" : {
-                                       "name" : "ToConcept",
-                                       "libraryName" : "FHIRHelpers",
-                                       "type" : "FunctionRef",
-                                       "operand" : [ {
-                                          "name" : "FecalOccultResultCategory",
-                                          "type" : "AliasRef"
-                                       } ]
-                                    }
-                                 } ]
-                              }
-                           }
-                        } ]
-                     }, {
-                        "type" : "Not",
-                        "operand" : {
-                           "type" : "IsNull",
-                           "operand" : {
-                              "path" : "value",
+                              "path" : "status",
                               "scope" : "FecalOccultResult",
                               "type" : "Property"
+                           } ]
+                        }, {
+                           "type" : "List",
+                           "element" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "final",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "amended",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "corrected",
+                              "type" : "Literal"
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "Exists",
+                        "operand" : {
+                           "type" : "Query",
+                           "source" : [ {
+                              "alias" : "FecalOccultResultCategory",
+                              "expression" : {
+                                 "path" : "category",
+                                 "scope" : "FecalOccultResult",
+                                 "type" : "Property"
+                              }
+                           } ],
+                           "relationship" : [ ],
+                           "where" : {
+                              "type" : "In",
+                              "operand" : [ {
+                                 "name" : "laboratory",
+                                 "type" : "CodeRef"
+                              }, {
+                                 "path" : "codes",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "ToConcept",
+                                    "libraryName" : "FHIRHelpers",
+                                    "type" : "FunctionRef",
+                                    "operand" : [ {
+                                       "name" : "FecalOccultResultCategory",
+                                       "type" : "AliasRef"
+                                    } ]
+                                 }
+                              } ]
                            }
                         }
                      } ]
                   }, {
-                     "type" : "In",
-                     "operand" : [ {
-                        "name" : "Latest",
-                        "libraryName" : "Global",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "path" : "effective",
+                     "type" : "Not",
+                     "operand" : {
+                        "type" : "IsNull",
+                        "operand" : {
+                           "path" : "value",
                            "scope" : "FecalOccultResult",
                            "type" : "Property"
-                        } ]
-                     }, {
-                        "name" : "Measurement Period",
-                        "type" : "ParameterRef"
-                     } ]
+                        }
+                     }
                   } ]
                }
             }
@@ -742,131 +390,76 @@
                   "operand" : [ {
                      "type" : "And",
                      "operand" : [ {
-                        "type" : "And",
+                        "type" : "In",
                         "operand" : [ {
-                           "type" : "In",
+                           "name" : "ToString",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
                            "operand" : [ {
-                              "name" : "ToString",
-                              "libraryName" : "FHIRHelpers",
-                              "type" : "FunctionRef",
-                              "operand" : [ {
-                                 "path" : "status",
-                                 "scope" : "FitDNA",
-                                 "type" : "Property"
-                              } ]
-                           }, {
-                              "type" : "List",
-                              "element" : [ {
-                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                                 "value" : "final",
-                                 "type" : "Literal"
-                              }, {
-                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                                 "value" : "amended",
-                                 "type" : "Literal"
-                              }, {
-                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                                 "value" : "corrected",
-                                 "type" : "Literal"
-                              } ]
-                           } ]
-                        }, {
-                           "type" : "Exists",
-                           "operand" : {
-                              "type" : "Query",
-                              "source" : [ {
-                                 "alias" : "FitDNACategory",
-                                 "expression" : {
-                                    "path" : "category",
-                                    "scope" : "FitDNA",
-                                    "type" : "Property"
-                                 }
-                              } ],
-                              "relationship" : [ ],
-                              "where" : {
-                                 "type" : "In",
-                                 "operand" : [ {
-                                    "name" : "laboratory",
-                                    "type" : "CodeRef"
-                                 }, {
-                                    "path" : "codes",
-                                    "type" : "Property",
-                                    "source" : {
-                                       "name" : "ToConcept",
-                                       "libraryName" : "FHIRHelpers",
-                                       "type" : "FunctionRef",
-                                       "operand" : [ {
-                                          "name" : "FitDNACategory",
-                                          "type" : "AliasRef"
-                                       } ]
-                                    }
-                                 } ]
-                              }
-                           }
-                        } ]
-                     }, {
-                        "type" : "Not",
-                        "operand" : {
-                           "type" : "IsNull",
-                           "operand" : {
-                              "path" : "value",
+                              "path" : "status",
                               "scope" : "FitDNA",
                               "type" : "Property"
+                           } ]
+                        }, {
+                           "type" : "List",
+                           "element" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "final",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "amended",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "corrected",
+                              "type" : "Literal"
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "Exists",
+                        "operand" : {
+                           "type" : "Query",
+                           "source" : [ {
+                              "alias" : "FitDNACategory",
+                              "expression" : {
+                                 "path" : "category",
+                                 "scope" : "FitDNA",
+                                 "type" : "Property"
+                              }
+                           } ],
+                           "relationship" : [ ],
+                           "where" : {
+                              "type" : "In",
+                              "operand" : [ {
+                                 "name" : "laboratory",
+                                 "type" : "CodeRef"
+                              }, {
+                                 "path" : "codes",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "ToConcept",
+                                    "libraryName" : "FHIRHelpers",
+                                    "type" : "FunctionRef",
+                                    "operand" : [ {
+                                       "name" : "FitDNACategory",
+                                       "type" : "AliasRef"
+                                    } ]
+                                 }
+                              } ]
                            }
                         }
                      } ]
                   }, {
-                     "type" : "And",
-                     "operand" : [ {
-                        "type" : "In",
-                        "operand" : [ {
-                           "name" : "Latest",
-                           "libraryName" : "Global",
-                           "type" : "FunctionRef",
-                           "operand" : [ {
-                              "path" : "effective",
-                              "scope" : "FitDNA",
-                              "type" : "Property"
-                           } ]
-                        }, {
-                           "lowClosed" : true,
-                           "highClosed" : true,
-                           "type" : "Interval",
-                           "low" : {
-                              "type" : "Subtract",
-                              "operand" : [ {
-                                 "type" : "End",
-                                 "operand" : {
-                                    "name" : "Measurement Period",
-                                    "type" : "ParameterRef"
-                                 }
-                              }, {
-                                 "value" : 3,
-                                 "unit" : "years",
-                                 "type" : "Quantity"
-                              } ]
-                           },
-                           "high" : {
-                              "type" : "End",
-                              "operand" : {
-                                 "name" : "Measurement Period",
-                                 "type" : "ParameterRef"
-                              }
-                           }
-                        } ]
-                     }, {
-                        "type" : "Not",
+                     "type" : "Not",
+                     "operand" : {
+                        "type" : "IsNull",
                         "operand" : {
-                           "type" : "IsNull",
-                           "operand" : {
-                              "type" : "End",
-                              "operand" : {
-                                 "name" : "Measurement Period",
-                                 "type" : "ParameterRef"
-                              }
-                           }
+                           "path" : "value",
+                           "scope" : "FitDNA",
+                           "type" : "Property"
                         }
-                     } ]
+                     }
                   } ]
                }
             }
@@ -892,78 +485,20 @@
                } ],
                "relationship" : [ ],
                "where" : {
-                  "type" : "And",
+                  "type" : "Equal",
                   "operand" : [ {
-                     "type" : "Equal",
+                     "name" : "ToString",
+                     "libraryName" : "FHIRHelpers",
+                     "type" : "FunctionRef",
                      "operand" : [ {
-                        "name" : "ToString",
-                        "libraryName" : "FHIRHelpers",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "path" : "status",
-                           "scope" : "Colonoscopy",
-                           "type" : "Property"
-                        } ]
-                     }, {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "completed",
-                        "type" : "Literal"
+                        "path" : "status",
+                        "scope" : "Colonoscopy",
+                        "type" : "Property"
                      } ]
                   }, {
-                     "type" : "And",
-                     "operand" : [ {
-                        "type" : "In",
-                        "operand" : [ {
-                           "type" : "End",
-                           "operand" : {
-                              "name" : "Normalize Interval",
-                              "libraryName" : "Global",
-                              "type" : "FunctionRef",
-                              "operand" : [ {
-                                 "path" : "performed",
-                                 "scope" : "Colonoscopy",
-                                 "type" : "Property"
-                              } ]
-                           }
-                        }, {
-                           "lowClosed" : true,
-                           "highClosed" : true,
-                           "type" : "Interval",
-                           "low" : {
-                              "type" : "Subtract",
-                              "operand" : [ {
-                                 "type" : "End",
-                                 "operand" : {
-                                    "name" : "Measurement Period",
-                                    "type" : "ParameterRef"
-                                 }
-                              }, {
-                                 "value" : 10,
-                                 "unit" : "years",
-                                 "type" : "Quantity"
-                              } ]
-                           },
-                           "high" : {
-                              "type" : "End",
-                              "operand" : {
-                                 "name" : "Measurement Period",
-                                 "type" : "ParameterRef"
-                              }
-                           }
-                        } ]
-                     }, {
-                        "type" : "Not",
-                        "operand" : {
-                           "type" : "IsNull",
-                           "operand" : {
-                              "type" : "End",
-                              "operand" : {
-                                 "name" : "Measurement Period",
-                                 "type" : "ParameterRef"
-                              }
-                           }
-                        }
-                     } ]
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "completed",
+                     "type" : "Literal"
                   } ]
                }
             }
@@ -989,92 +524,34 @@
                } ],
                "relationship" : [ ],
                "where" : {
-                  "type" : "And",
+                  "type" : "In",
                   "operand" : [ {
-                     "type" : "In",
+                     "name" : "ToString",
+                     "libraryName" : "FHIRHelpers",
+                     "type" : "FunctionRef",
                      "operand" : [ {
-                        "name" : "ToString",
-                        "libraryName" : "FHIRHelpers",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "path" : "status",
-                           "scope" : "Colonography",
-                           "type" : "Property"
-                        } ]
-                     }, {
-                        "type" : "List",
-                        "element" : [ {
-                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                           "value" : "final",
-                           "type" : "Literal"
-                        }, {
-                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                           "value" : "amended",
-                           "type" : "Literal"
-                        }, {
-                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                           "value" : "corrected",
-                           "type" : "Literal"
-                        }, {
-                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                           "value" : "appended",
-                           "type" : "Literal"
-                        } ]
+                        "path" : "status",
+                        "scope" : "Colonography",
+                        "type" : "Property"
                      } ]
                   }, {
-                     "type" : "And",
-                     "operand" : [ {
-                        "type" : "In",
-                        "operand" : [ {
-                           "type" : "End",
-                           "operand" : {
-                              "name" : "Normalize Interval",
-                              "libraryName" : "Global",
-                              "type" : "FunctionRef",
-                              "operand" : [ {
-                                 "path" : "effective",
-                                 "scope" : "Colonography",
-                                 "type" : "Property"
-                              } ]
-                           }
-                        }, {
-                           "lowClosed" : true,
-                           "highClosed" : true,
-                           "type" : "Interval",
-                           "low" : {
-                              "type" : "Subtract",
-                              "operand" : [ {
-                                 "type" : "End",
-                                 "operand" : {
-                                    "name" : "Measurement Period",
-                                    "type" : "ParameterRef"
-                                 }
-                              }, {
-                                 "value" : 5,
-                                 "unit" : "years",
-                                 "type" : "Quantity"
-                              } ]
-                           },
-                           "high" : {
-                              "type" : "End",
-                              "operand" : {
-                                 "name" : "Measurement Period",
-                                 "type" : "ParameterRef"
-                              }
-                           }
-                        } ]
+                     "type" : "List",
+                     "element" : [ {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "final",
+                        "type" : "Literal"
                      }, {
-                        "type" : "Not",
-                        "operand" : {
-                           "type" : "IsNull",
-                           "operand" : {
-                              "type" : "End",
-                              "operand" : {
-                                 "name" : "Measurement Period",
-                                 "type" : "ParameterRef"
-                              }
-                           }
-                        }
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "amended",
+                        "type" : "Literal"
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "corrected",
+                        "type" : "Literal"
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "appended",
+                        "type" : "Literal"
                      } ]
                   } ]
                }
@@ -1146,28 +623,7 @@
                      }
                   }
                } ],
-               "relationship" : [ ],
-               "where" : {
-                  "type" : "SameOrBefore",
-                  "operand" : [ {
-                     "type" : "Start",
-                     "operand" : {
-                        "name" : "Prevalence Period",
-                        "libraryName" : "Global",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "name" : "ColorectalCancer",
-                           "type" : "AliasRef"
-                        } ]
-                     }
-                  }, {
-                     "type" : "End",
-                     "operand" : {
-                        "name" : "Measurement Period",
-                        "type" : "ParameterRef"
-                     }
-                  } ]
-               }
+               "relationship" : [ ]
             }
          }, {
             "name" : "Denominator Exclusions",
@@ -1176,75 +632,17 @@
             "expression" : {
                "type" : "Or",
                "operand" : [ {
-                  "type" : "Or",
-                  "operand" : [ {
-                     "type" : "Or",
-                     "operand" : [ {
-                        "type" : "Or",
-                        "operand" : [ {
-                           "type" : "Or",
-                           "operand" : [ {
-                              "name" : "Has Hospice",
-                              "libraryName" : "Hospice",
-                              "type" : "ExpressionRef"
-                           }, {
-                              "type" : "Exists",
-                              "operand" : {
-                                 "name" : "Malignant Neoplasm",
-                                 "type" : "ExpressionRef"
-                              }
-                           } ]
-                        }, {
-                           "type" : "Exists",
-                           "operand" : {
-                              "name" : "Total Colectomy Performed",
-                              "type" : "ExpressionRef"
-                           }
-                        } ]
-                     }, {
-                        "name" : "Advanced Illness and Frailty Exclusion Not Including Over Age 80",
-                        "libraryName" : "FrailtyLTI",
-                        "type" : "ExpressionRef"
-                     } ]
-                  }, {
-                     "type" : "And",
-                     "operand" : [ {
-                        "type" : "GreaterOrEqual",
-                        "operand" : [ {
-                           "precision" : "Year",
-                           "type" : "CalculateAgeAt",
-                           "operand" : [ {
-                              "path" : "birthDate.value",
-                              "type" : "Property",
-                              "source" : {
-                                 "name" : "Patient",
-                                 "type" : "ExpressionRef"
-                              }
-                           }, {
-                              "type" : "DateFrom",
-                              "operand" : {
-                                 "type" : "Start",
-                                 "operand" : {
-                                    "name" : "Measurement Period",
-                                    "type" : "ParameterRef"
-                                 }
-                              }
-                           } ]
-                        }, {
-                           "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                           "value" : "65",
-                           "type" : "Literal"
-                        } ]
-                     }, {
-                        "name" : "Has Long Term Care Periods Longer Than 90 Consecutive Days",
-                        "libraryName" : "FrailtyLTI",
-                        "type" : "ExpressionRef"
-                     } ]
-                  } ]
+                  "type" : "Exists",
+                  "operand" : {
+                     "name" : "Malignant Neoplasm",
+                     "type" : "ExpressionRef"
+                  }
                }, {
-                  "name" : "Palliative Care in the Measurement Period",
-                  "libraryName" : "PalliativeCare",
-                  "type" : "ExpressionRef"
+                  "type" : "Exists",
+                  "operand" : {
+                     "name" : "Total Colectomy Performed",
+                     "type" : "ExpressionRef"
+                  }
                } ]
             }
          } ]
