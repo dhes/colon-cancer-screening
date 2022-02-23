@@ -107,3 +107,10 @@ define "CT Colonography Performed":
               // and Global."Normalize Interval" ( Colonography.effective ) ends 5 years or less on or before 
               // end of "Measurement Period"
 
+define AgeInYears:
+   AgeInYears()
+
+define InDemographic:
+  AgeInYears() between 45 and 75
+
+

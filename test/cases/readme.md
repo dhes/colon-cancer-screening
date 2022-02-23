@@ -1,1 +1,1 @@
-The cases were copied over from statin-use. They all need to be edited. 
+The cases were copied over from statin-use. Most need to be edited. 

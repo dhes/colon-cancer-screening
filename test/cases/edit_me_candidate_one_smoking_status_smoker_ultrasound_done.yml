@@ -11,6 +11,6 @@ data:
     code: 'SNOMEDCT#241462009 Ultrasound scan of abdominal aorta (procedure)'
     performedDateTime: 2020-01-20
 results:
-  Notification: null
-  Recommendation: null
-  Information: null
+  Numerator: false
+  Denominator Exclusions: false
+  InDemographic: false

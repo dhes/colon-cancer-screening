@@ -645,6 +645,66 @@
                   }
                } ]
             }
+         }, {
+            "name" : "AgeInYears",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "precision" : "Year",
+               "type" : "CalculateAge",
+               "operand" : {
+                  "path" : "birthDate.value",
+                  "type" : "Property",
+                  "source" : {
+                     "name" : "Patient",
+                     "type" : "ExpressionRef"
+                  }
+               }
+            }
+         }, {
+            "name" : "InDemographic",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "And",
+               "operand" : [ {
+                  "type" : "GreaterOrEqual",
+                  "operand" : [ {
+                     "precision" : "Year",
+                     "type" : "CalculateAge",
+                     "operand" : {
+                        "path" : "birthDate.value",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "Patient",
+                           "type" : "ExpressionRef"
+                        }
+                     }
+                  }, {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "value" : "45",
+                     "type" : "Literal"
+                  } ]
+               }, {
+                  "type" : "LessOrEqual",
+                  "operand" : [ {
+                     "precision" : "Year",
+                     "type" : "CalculateAge",
+                     "operand" : {
+                        "path" : "birthDate.value",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "Patient",
+                           "type" : "ExpressionRef"
+                        }
+                     }
+                  }, {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "value" : "75",
+                     "type" : "Literal"
+                  } ]
+               } ]
+            }
          } ]
       }
    }

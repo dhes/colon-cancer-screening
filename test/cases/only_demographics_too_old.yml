@@ -6,5 +6,6 @@ data:
 # ...age 76y years on 1945-11-27
     birthDate: 1945-11-27
 results:
-  YesRecommendation: null
-  NeedMoreInformation: null
+  Numerator: false
+  Denominator Exclusions: false
+  InDemographic: false

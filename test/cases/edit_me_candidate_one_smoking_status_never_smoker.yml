@@ -9,6 +9,6 @@ data:
     valueCodeableConcept: 'SNOMEDCT#266919005 Never smoked tobacco (finding)'
     issued: 2022-04-05T00:00:00.000Z
 results:
-  Notification: null
-  Recommendation: null
-  Information: null
+  Numerator: false
+  Denominator Exclusions: false
+  InDemographic: false

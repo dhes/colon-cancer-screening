@@ -17,6 +17,6 @@ data:
 # edit next line to make < 12 months ago. 
     authoredOn: 2021-11-02T00:00:00.000Z
 results:
-  Notification: null
-  Recommendation: null
-  Information: null
+  Numerator: false
+  Denominator Exclusions: false
+  InDemographic: false

@@ -6,5 +6,6 @@ data:
 # ...age 39 years. 
     birthDate: 2002-11-27
 results:
-  YesRecommendation: null
-  NeedMoreInformation: null
+  Numerator: false
+  Denominator Exclusions: false
+  InDemographic: false

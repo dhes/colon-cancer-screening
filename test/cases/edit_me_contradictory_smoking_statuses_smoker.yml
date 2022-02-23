@@ -16,14 +16,6 @@ data:
     valueCodeableConcept: 'SNOMEDCT#65568007 Cigarette smoker (finding)'
     issued: 2019-04-05T00:00:00.000Z
 results:
-  Notification: >-
-    You should have an abdominal aorta ultrasound.
-  Recommendation: >-
-    Experts (i.e., [The U.S. Preventive Services Task Force](https://www.uspreventiveservicestaskforce.org/Page/Name/about-the-uspstf)) find that men your age that ever smoked should have an ultrasound performed on their aorta to make sure there is not aneurysm.
-
-
-    Here are some links to resources to help you get started:
-    
-
-    * [The U.S. Preventive Services Task Force Recommendation on “Abdominal Aortic Aneurysm: Screening”](ttps://www.uspreventiveservicestaskforce.org/uspstf/recommendation/abdominal-aortic-aneurysm-screening)
-  Information: null
+  Numerator: false
+  Denominator Exclusions: false
+  InDemographic: false

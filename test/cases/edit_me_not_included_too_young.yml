@@ -8,6 +8,6 @@ data:
 # ...age 65 years minus 1 day.
     birthDate: 1956-11-11
 results:
-  Notification: null
-  Recommendation: null
-  Information: null
+  Numerator: false
+  Denominator Exclusions: false
+  InDemographic: false

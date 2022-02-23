@@ -1,11 +1,9 @@
 name: WiliamsJoshuaFromLogicaHealth
 data:
+# adapted for colon cancer screening
   - resourceType: Patient
     name: Joshua Williams
     gender: male
-# Unless today is 2021-11-10
-# ...please adjust the birthdate to make this patient's   
-# ...age 60 years. 
     birthDate: 1954-08-21
   - resourceType: Observation
     code: 'LOINC#13457-7 Cholesterol in LDL Calc [Mass/Vol]'
@@ -24,9 +22,6 @@ data:
     valueCodeableConcept: 'SNOMEDCT#266927001 Tobacco smoking consumption unknown (finding)'
     issued: 2021-04-05T00:00:00.000Z
 results:
-  YesRecommendation: |-
-    Start low to moderate intensity lipid lowering therapy based on outcome of shared decision making between patient and provider
-  # see todo.md re smoking status 'unknown'
-  # this line really should yield - Tobacco smoking status within the last year
-  NeedMoreInformation: |-
-    - Tobacco smoking status within the last year
+  Numerator: false
+  Denominator Exclusions: false
+  InDemographic: true

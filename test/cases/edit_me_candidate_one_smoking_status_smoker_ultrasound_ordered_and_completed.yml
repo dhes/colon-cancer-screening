@@ -16,5 +16,6 @@ data:
     status: completed
     authoredOn: 2018-11-02T00:00:00.000Z
 results:
-  Notification: null
-  Recommendation: null
+  Numerator: false
+  Denominator Exclusions: false
+  InDemographic: false

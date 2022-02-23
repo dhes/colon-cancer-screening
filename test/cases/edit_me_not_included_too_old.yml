@@ -8,6 +8,6 @@ data:
 # ...age 76 years.
     birthDate: 1945-11-09
 results:
-  Notification: null
-  Recommendation: null
-  Information: null
+  Numerator: false
+  Denominator Exclusions: false
+  InDemographic: false
