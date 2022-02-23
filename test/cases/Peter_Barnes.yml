@@ -1,4 +1,4 @@
-name: candidate_one_smoking_status_never_smoker
+name: Peter_Barnes
 data:
   - resourceType: Patient
     name: Peter Barnes
@@ -11,4 +11,4 @@ data:
 results:
   Numerator: false
   Denominator Exclusions: false
-  InDemographic: false
+  InDemographic: true

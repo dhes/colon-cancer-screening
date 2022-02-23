@@ -111,6 +111,17 @@ define AgeInYears:
    AgeInYears()
 
 define InDemographic:
-  AgeInYears() between 45 and 75
+  AgeInYears() between 45 and 75 // inclusive
 
+// define Now:
+//   Now()
+
+// define Today:
+//   Today()
+
+// define NowEqualsToday:
+//   Now = Today
+
+// define NowEquivalentToday:
+//   Now ~ Today
 

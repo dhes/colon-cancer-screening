@@ -1,16 +1,14 @@
-name: candidate_one_smoking_status_smoker_ultrasound_done
+name: just_old_enough
 data:
   - resourceType: Patient
     name: Joe Smith
     gender: male
-# Unless today is 2021-11-10
-# ...please adjust the birthdate to make this patient's   
-# ...age 70 years. 
-    birthDate: 1951-11-10
+# Now() is fixed at "2021-12-31"
+    birthDate: 1976-12-31
   - resourceType: Procedure
     code: 'SNOMEDCT#241462009 Ultrasound scan of abdominal aorta (procedure)'
     performedDateTime: 2020-01-20
 results:
   Numerator: false
   Denominator Exclusions: false
-  InDemographic: false
+  InDemographic: true

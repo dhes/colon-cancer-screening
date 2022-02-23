@@ -1,0 +1,15 @@
+name: one_day_too_young
+data:
+  - resourceType: Patient
+    name: Joe Smith
+    gender: male
+# Now() is fixed at "2021-12-31"
+    birthDate: 1977-01-01
+  - resourceType: Observation
+    code: 'LOINC#72166-2 Tobacco smoking status'
+    valueCodeableConcept: 'SNOMEDCT#65568007 Cigarette smoker (finding)'
+    issued: 2019-04-05T00:00:00.000Z
+results:
+  Numerator: false
+  Denominator Exclusions: false
+  InDemographic: false
