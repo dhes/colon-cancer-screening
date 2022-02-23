@@ -9,8 +9,8 @@
   "author": "Dan Heslinga",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "^9.1.3",
-    "cql-testing": "^2.5.0",
-    "cql-execution": "^2.3.3"
+    "mocha": "^9.2.1",
+    "cql-testing": "^2.5.1",
+    "cql-execution": "^2.4.0"
   }
 }
