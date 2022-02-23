@@ -3,13 +3,6 @@ library ColorectalCancerScreeningsFHIR version '0.0.003'
 using FHIR version '4.0.1'
 
 include FHIRHelpers version '4.0.001' called FHIRHelpers
-include SupplementalDataElementsFHIR4 version '2.0.000' called SDE
-include MATGlobalCommonFunctionsFHIR4 version '6.1.000' called Global
-include AdultOutpatientEncountersFHIR4 version '2.2.000' called AdultOutpatientEncounters
-include HospiceFHIR4 version '2.3.000' called Hospice
-include AdvancedIllnessandFrailtyExclusionECQMFHIR4 version '5.17.000' called FrailtyLTI
-include PalliativeCareFHIR version '0.6.000' called PalliativeCare
-include CumulativeMedicationDurationFHIR4 version '1.0.000' called CMD
 
 codesystem "ObservationCategoryCodes": 'http://terminology.hl7.org/CodeSystem/observation-category' 
 
@@ -46,48 +39,20 @@ valueset "Total Colectomy": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113
 
 code "laboratory": 'laboratory' from "ObservationCategoryCodes" display 'laboratory'
 
-parameter "Measurement Period" Interval<DateTime>
-
 context Patient
 
-define "SDE Ethnicity":
-  SDE."SDE Ethnicity"
-
-define "SDE Payer":
-  SDE."SDE Payer"
-
-define "SDE Race":
-  SDE."SDE Race"
-
-define "SDE Sex":
-  SDE."SDE Sex"
-
-define "Initial Population":
-  AgeInYearsAt(date from start of "Measurement Period")in Interval[50, 75 )
-            and exists ( AdultOutpatientEncounters."Qualifying Encounters"
-                union "Telehealth Services"
-            )
-
-define "Telehealth Services":
-  ( [Encounter: "Online Assessments"]
-            union [Encounter: "Telephone Visits"] ) TelehealthEncounter
-            where TelehealthEncounter.status = 'finished'
-              and Global."Normalize Interval" ( TelehealthEncounter.period ) during "Measurement Period"
-
-define "Denominator":
-  "Initial Population"
 
 define "Flexible Sigmoidoscopy Performed":
   [Procedure: "Flexible Sigmoidoscopy"] FlexibleSigmoidoscopy
             where FlexibleSigmoidoscopy.status = 'completed'
-              and Global."Normalize Interval" ( FlexibleSigmoidoscopy.performed ) ends 5 years or less on or before 
-              end of "Measurement Period"
+              // and Global."Normalize Interval" ( FlexibleSigmoidoscopy.performed ) ends 5 years or less on or before 
+              // end of "Measurement Period"
 
 define "Total Colectomy Performed":
   [Procedure: "Total Colectomy"] Colectomy
             where Colectomy.status = 'completed'
-              and Global."Normalize Interval" ( Colectomy.performed ) ends on or before 
-              end of "Measurement Period"
+              // and Global."Normalize Interval" ( Colectomy.performed ) ends on or before 
+              // end of "Measurement Period"
 
 define "Fecal Occult Blood Test Performed":
   [Observation: "Fecal Occult Blood Test (FOBT)"] FecalOccultResult
@@ -96,7 +61,7 @@ define "Fecal Occult Blood Test Performed":
                   where "laboratory" in FHIRHelpers.ToConcept ( FecalOccultResultCategory ).codes
               )
               and FecalOccultResult.value is not null
-              and Global."Latest" ( FecalOccultResult.effective ) during "Measurement Period"
+              // and Global."Latest" ( FecalOccultResult.effective ) during "Measurement Period"
 
 define "Fecal Immunochemical Test DNA Performed":
   [Observation: "FIT DNA"] FitDNA
@@ -105,14 +70,14 @@ define "Fecal Immunochemical Test DNA Performed":
                   where "laboratory" in FHIRHelpers.ToConcept ( FitDNACategory ).codes
               )
               and FitDNA.value is not null
-              and Global."Latest" ( FitDNA.effective ) 3 years or less on or before 
-              end of "Measurement Period"
+              // and Global."Latest" ( FitDNA.effective ) 3 years or less on or before 
+              // end of "Measurement Period"
 
 define "Colonoscopy Performed":
   [Procedure: "Colonoscopy"] Colonoscopy
             where Colonoscopy.status = 'completed'
-              and Global."Normalize Interval" ( Colonoscopy.performed ) ends 10 years or less on or before 
-              end of "Measurement Period"
+              // and Global."Normalize Interval" ( Colonoscopy.performed ) ends 10 years or less on or before 
+              // end of "Measurement Period"
 
 define "Numerator":
   exists "Colonoscopy Performed"
@@ -123,22 +88,22 @@ define "Numerator":
 
 define "Malignant Neoplasm":
   [Condition: "Malignant Neoplasm of Colon"] ColorectalCancer
-            where Global."Prevalence Period" ( ColorectalCancer ) starts on or before 
-              end of "Measurement Period"
+            // where Global."Prevalence Period" ( ColorectalCancer ) starts on or before 
+            //   end of "Measurement Period"
 
 define "Denominator Exclusions":
-  Hospice."Has Hospice"
-            or exists "Malignant Neoplasm"
+  // Hospice."Has Hospice"
+            exists "Malignant Neoplasm"
             or exists "Total Colectomy Performed"
-            or FrailtyLTI."Advanced Illness and Frailty Exclusion Not Including Over Age 80"
-            or ( AgeInYearsAt(date from start of "Measurement Period")>= 65
-                and FrailtyLTI."Has Long Term Care Periods Longer Than 90 Consecutive Days"
-            )
-            or PalliativeCare."Palliative Care in the Measurement Period"
+            // or FrailtyLTI."Advanced Illness and Frailty Exclusion Not Including Over Age 80"
+            // or ( AgeInYearsAt(date from start of "Measurement Period")>= 65
+                // and FrailtyLTI."Has Long Term Care Periods Longer Than 90 Consecutive Days"
+            // )
+            // or PalliativeCare."Palliative Care in the Measurement Period"
 
 define "CT Colonography Performed":
   [Observation: "CT Colonography"] Colonography
             where Colonography.status in { 'final', 'amended', 'corrected', 'appended' }
-              and Global."Normalize Interval" ( Colonography.effective ) ends 5 years or less on or before 
-              end of "Measurement Period"
+              // and Global."Normalize Interval" ( Colonography.effective ) ends 5 years or less on or before 
+              // end of "Measurement Period"
 
