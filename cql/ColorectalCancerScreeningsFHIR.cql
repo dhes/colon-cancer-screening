@@ -76,8 +76,11 @@ define "Fecal Immunochemical Test DNA Performed":
 define "Colonoscopy Performed":
   [Procedure: "Colonoscopy"] Colonoscopy
             where Colonoscopy.status = 'completed'
-              // and Global."Normalize Interval" ( Colonoscopy.performed ) ends 10 years or less on or before 
-              // end of "Measurement Period"
+              // This CQM login depends on MATGlobalCommonFunctionsFHIR4. 
+                // and Global."Normalize Interval" ( Colonoscopy.performed ) ends 10 years or less on or before 
+                // end of "Measurement Period"
+              // I'll try to  use more basic pattern like: 
+              and Colonoscopy.performed during Interval[Today() - 10 years, Today()]
 
 define "Numerator":
   exists "Colonoscopy Performed"

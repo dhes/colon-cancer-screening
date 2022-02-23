@@ -485,20 +485,135 @@
                } ],
                "relationship" : [ ],
                "where" : {
-                  "type" : "Equal",
+                  "type" : "And",
                   "operand" : [ {
-                     "name" : "ToString",
-                     "libraryName" : "FHIRHelpers",
-                     "type" : "FunctionRef",
+                     "type" : "Equal",
                      "operand" : [ {
-                        "path" : "status",
-                        "scope" : "Colonoscopy",
-                        "type" : "Property"
+                        "name" : "ToString",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "path" : "status",
+                           "scope" : "Colonoscopy",
+                           "type" : "Property"
+                        } ]
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "completed",
+                        "type" : "Literal"
                      } ]
                   }, {
-                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                     "value" : "completed",
-                     "type" : "Literal"
+                     "type" : "IncludedIn",
+                     "operand" : [ {
+                        "name" : "ToInterval",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "asType" : "{http://hl7.org/fhir}Period",
+                           "type" : "As",
+                           "operand" : {
+                              "path" : "performed",
+                              "scope" : "Colonoscopy",
+                              "type" : "Property"
+                           }
+                        } ]
+                     }, {
+                        "type" : "Interval",
+                        "low" : {
+                           "type" : "ToDateTime",
+                           "operand" : {
+                              "path" : "low",
+                              "type" : "Property",
+                              "source" : {
+                                 "lowClosed" : true,
+                                 "highClosed" : true,
+                                 "type" : "Interval",
+                                 "low" : {
+                                    "type" : "Subtract",
+                                    "operand" : [ {
+                                       "type" : "Today"
+                                    }, {
+                                       "value" : 10,
+                                       "unit" : "years",
+                                       "type" : "Quantity"
+                                    } ]
+                                 },
+                                 "high" : {
+                                    "type" : "Today"
+                                 }
+                              }
+                           }
+                        },
+                        "lowClosedExpression" : {
+                           "path" : "lowClosed",
+                           "type" : "Property",
+                           "source" : {
+                              "lowClosed" : true,
+                              "highClosed" : true,
+                              "type" : "Interval",
+                              "low" : {
+                                 "type" : "Subtract",
+                                 "operand" : [ {
+                                    "type" : "Today"
+                                 }, {
+                                    "value" : 10,
+                                    "unit" : "years",
+                                    "type" : "Quantity"
+                                 } ]
+                              },
+                              "high" : {
+                                 "type" : "Today"
+                              }
+                           }
+                        },
+                        "high" : {
+                           "type" : "ToDateTime",
+                           "operand" : {
+                              "path" : "high",
+                              "type" : "Property",
+                              "source" : {
+                                 "lowClosed" : true,
+                                 "highClosed" : true,
+                                 "type" : "Interval",
+                                 "low" : {
+                                    "type" : "Subtract",
+                                    "operand" : [ {
+                                       "type" : "Today"
+                                    }, {
+                                       "value" : 10,
+                                       "unit" : "years",
+                                       "type" : "Quantity"
+                                    } ]
+                                 },
+                                 "high" : {
+                                    "type" : "Today"
+                                 }
+                              }
+                           }
+                        },
+                        "highClosedExpression" : {
+                           "path" : "highClosed",
+                           "type" : "Property",
+                           "source" : {
+                              "lowClosed" : true,
+                              "highClosed" : true,
+                              "type" : "Interval",
+                              "low" : {
+                                 "type" : "Subtract",
+                                 "operand" : [ {
+                                    "type" : "Today"
+                                 }, {
+                                    "value" : 10,
+                                    "unit" : "years",
+                                    "type" : "Quantity"
+                                 } ]
+                              },
+                              "high" : {
+                                 "type" : "Today"
+                              }
+                           }
+                        }
+                     } ]
                   } ]
                }
             }
