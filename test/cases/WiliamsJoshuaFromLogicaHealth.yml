@@ -4,7 +4,7 @@ data:
   - resourceType: Patient
     name: Joshua Williams
     gender: male
-    birthDate: 1954-08-21
+    birthDate: 1953-06-05
   - resourceType: Observation
     code: 'LOINC#13457-7 Cholesterol in LDL Calc [Mass/Vol]'
     valueQuantity: 150 mg/dL

@@ -10,4 +10,6 @@ tests:
 options:
   dumpFiles: 
     enabled: true
-  date: "2021-11-10T00:00:00.0Z"
+  date: "2021-12-31T00:00:00.0Z"
+# base date for simplicity
+# born on 2022-01-01? You're 1 day old. 
