@@ -54,15 +54,29 @@ define "Total Colectomy Performed":
               // and Global."Normalize Interval" ( Colectomy.performed ) ends on or before 
               // end of "Measurement Period"
 
+
+
 define "Fecal Occult Blood Test Performed":
   [Observation: "Fecal Occult Blood Test (FOBT)"] FecalOccultResult
-            where FecalOccultResult.status in { 'final', 'amended', 'corrected' }
-              //and exists ( FecalOccultResult.category FecalOccultResultCategory
-              //    where "laboratory" in FHIRHelpers.ToConcept ( FecalOccultResultCategory ).codes
-              //)
-              and FecalOccultResult.value is not null
-              // and Global."Latest" ( FecalOccultResult.effective ) during "Measurement Period"
-              and FecalOccultResult.issued within 1 year of Now()
+    where FecalOccultResult.status in { 'final', 'amended', 'corrected' }
+      // and exists ( FecalOccultResult.category FecalOccultResultCategory
+      //    where "laboratory" in FHIRHelpers.ToConcept ( FecalOccultResultCategory ).codes
+      // )
+      // DH I'm not sure why the above three lines don't work, so try it without the FHIRHelper, like this: 
+      and 'laboratory' in FecalOccultResult.category.coding.code.value
+      and FecalOccultResult.value is not null
+      // and Global."Latest" ( FecalOccultResult.effective ) during "Measurement Period"
+      and FecalOccultResult.issued within 1 year of Now()
+
+// DH for troubleshooting
+define FOBT_Labs:
+  "Fecal Occult Blood Test Performed" FOBTP
+    where 'laboratory' in FOBTP.category.coding.code.value
+
+// DH for troubleshooting
+// define FecalOccultResultCategories:
+//   [Observation: "Fecal Occult Blood Test (FOBT)"] FecalOccultResult 
+//     return FHIRHelpers.ToConcept(FecalOccultResult.code)
 
 define "Fecal Immunochemical Test DNA Performed":
   [Observation: "FIT DNA"] FitDNA
@@ -118,11 +132,11 @@ define AgeInYears:
 define InDemographic:
   AgeInYears() between 45 and 75 // inclusive
 
-// define Now:
-//   Now()
+define Now:
+  Now()
 
-// define Today:
-//   Today()
+define Today:
+  Today()
 
 // define NowEqualsToday:
 //   Now = Today

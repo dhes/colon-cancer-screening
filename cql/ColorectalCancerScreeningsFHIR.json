@@ -287,31 +287,327 @@
                } ],
                "relationship" : [ ],
                "where" : {
-                  "type" : "In",
+                  "type" : "And",
                   "operand" : [ {
-                     "name" : "ToString",
-                     "libraryName" : "FHIRHelpers",
-                     "type" : "FunctionRef",
+                     "type" : "And",
                      "operand" : [ {
-                        "path" : "status",
-                        "scope" : "FecalOccultResult",
-                        "type" : "Property"
+                        "type" : "And",
+                        "operand" : [ {
+                           "type" : "In",
+                           "operand" : [ {
+                              "name" : "ToString",
+                              "libraryName" : "FHIRHelpers",
+                              "type" : "FunctionRef",
+                              "operand" : [ {
+                                 "path" : "status",
+                                 "scope" : "FecalOccultResult",
+                                 "type" : "Property"
+                              } ]
+                           }, {
+                              "type" : "List",
+                              "element" : [ {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                 "value" : "final",
+                                 "type" : "Literal"
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                 "value" : "amended",
+                                 "type" : "Literal"
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                 "value" : "corrected",
+                                 "type" : "Literal"
+                              } ]
+                           } ]
+                        }, {
+                           "type" : "In",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "laboratory",
+                              "type" : "Literal"
+                           }, {
+                              "type" : "Query",
+                              "source" : [ {
+                                 "alias" : "$this",
+                                 "expression" : {
+                                    "type" : "Query",
+                                    "source" : [ {
+                                       "alias" : "$this",
+                                       "expression" : {
+                                          "type" : "Flatten",
+                                          "operand" : {
+                                             "type" : "Query",
+                                             "source" : [ {
+                                                "alias" : "$this",
+                                                "expression" : {
+                                                   "path" : "category",
+                                                   "scope" : "FecalOccultResult",
+                                                   "type" : "Property"
+                                                }
+                                             } ],
+                                             "where" : {
+                                                "type" : "Not",
+                                                "operand" : {
+                                                   "type" : "IsNull",
+                                                   "operand" : {
+                                                      "path" : "coding",
+                                                      "type" : "Property",
+                                                      "source" : {
+                                                         "name" : "$this",
+                                                         "type" : "AliasRef"
+                                                      }
+                                                   }
+                                                }
+                                             },
+                                             "return" : {
+                                                "distinct" : false,
+                                                "expression" : {
+                                                   "path" : "coding",
+                                                   "type" : "Property",
+                                                   "source" : {
+                                                      "name" : "$this",
+                                                      "type" : "AliasRef"
+                                                   }
+                                                }
+                                             }
+                                          }
+                                       }
+                                    } ],
+                                    "where" : {
+                                       "type" : "Not",
+                                       "operand" : {
+                                          "type" : "IsNull",
+                                          "operand" : {
+                                             "path" : "code",
+                                             "type" : "Property",
+                                             "source" : {
+                                                "name" : "$this",
+                                                "type" : "AliasRef"
+                                             }
+                                          }
+                                       }
+                                    },
+                                    "return" : {
+                                       "distinct" : false,
+                                       "expression" : {
+                                          "path" : "code",
+                                          "type" : "Property",
+                                          "source" : {
+                                             "name" : "$this",
+                                             "type" : "AliasRef"
+                                          }
+                                       }
+                                    }
+                                 }
+                              } ],
+                              "where" : {
+                                 "type" : "Not",
+                                 "operand" : {
+                                    "type" : "IsNull",
+                                    "operand" : {
+                                       "path" : "value",
+                                       "type" : "Property",
+                                       "source" : {
+                                          "name" : "$this",
+                                          "type" : "AliasRef"
+                                       }
+                                    }
+                                 }
+                              },
+                              "return" : {
+                                 "distinct" : false,
+                                 "expression" : {
+                                    "path" : "value",
+                                    "type" : "Property",
+                                    "source" : {
+                                       "name" : "$this",
+                                       "type" : "AliasRef"
+                                    }
+                                 }
+                              }
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "Not",
+                        "operand" : {
+                           "type" : "IsNull",
+                           "operand" : {
+                              "path" : "value",
+                              "scope" : "FecalOccultResult",
+                              "type" : "Property"
+                           }
+                        }
                      } ]
                   }, {
-                     "type" : "List",
-                     "element" : [ {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "final",
-                        "type" : "Literal"
+                     "type" : "And",
+                     "operand" : [ {
+                        "type" : "In",
+                        "operand" : [ {
+                           "name" : "ToDateTime",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "path" : "issued",
+                              "scope" : "FecalOccultResult",
+                              "type" : "Property"
+                           } ]
+                        }, {
+                           "lowClosed" : true,
+                           "highClosed" : true,
+                           "type" : "Interval",
+                           "low" : {
+                              "type" : "Subtract",
+                              "operand" : [ {
+                                 "type" : "Now"
+                              }, {
+                                 "value" : 1,
+                                 "unit" : "year",
+                                 "type" : "Quantity"
+                              } ]
+                           },
+                           "high" : {
+                              "type" : "Add",
+                              "operand" : [ {
+                                 "type" : "Now"
+                              }, {
+                                 "value" : 1,
+                                 "unit" : "year",
+                                 "type" : "Quantity"
+                              } ]
+                           }
+                        } ]
                      }, {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "amended",
-                        "type" : "Literal"
-                     }, {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "corrected",
-                        "type" : "Literal"
+                        "type" : "Not",
+                        "operand" : {
+                           "type" : "IsNull",
+                           "operand" : {
+                              "type" : "Now"
+                           }
+                        }
                      } ]
+                  } ]
+               }
+            }
+         }, {
+            "name" : "FOBT_Labs",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "FOBTP",
+                  "expression" : {
+                     "name" : "Fecal Occult Blood Test Performed",
+                     "type" : "ExpressionRef"
+                  }
+               } ],
+               "relationship" : [ ],
+               "where" : {
+                  "type" : "In",
+                  "operand" : [ {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "laboratory",
+                     "type" : "Literal"
+                  }, {
+                     "type" : "Query",
+                     "source" : [ {
+                        "alias" : "$this",
+                        "expression" : {
+                           "type" : "Query",
+                           "source" : [ {
+                              "alias" : "$this",
+                              "expression" : {
+                                 "type" : "Flatten",
+                                 "operand" : {
+                                    "type" : "Query",
+                                    "source" : [ {
+                                       "alias" : "$this",
+                                       "expression" : {
+                                          "path" : "category",
+                                          "scope" : "FOBTP",
+                                          "type" : "Property"
+                                       }
+                                    } ],
+                                    "where" : {
+                                       "type" : "Not",
+                                       "operand" : {
+                                          "type" : "IsNull",
+                                          "operand" : {
+                                             "path" : "coding",
+                                             "type" : "Property",
+                                             "source" : {
+                                                "name" : "$this",
+                                                "type" : "AliasRef"
+                                             }
+                                          }
+                                       }
+                                    },
+                                    "return" : {
+                                       "distinct" : false,
+                                       "expression" : {
+                                          "path" : "coding",
+                                          "type" : "Property",
+                                          "source" : {
+                                             "name" : "$this",
+                                             "type" : "AliasRef"
+                                          }
+                                       }
+                                    }
+                                 }
+                              }
+                           } ],
+                           "where" : {
+                              "type" : "Not",
+                              "operand" : {
+                                 "type" : "IsNull",
+                                 "operand" : {
+                                    "path" : "code",
+                                    "type" : "Property",
+                                    "source" : {
+                                       "name" : "$this",
+                                       "type" : "AliasRef"
+                                    }
+                                 }
+                              }
+                           },
+                           "return" : {
+                              "distinct" : false,
+                              "expression" : {
+                                 "path" : "code",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "$this",
+                                    "type" : "AliasRef"
+                                 }
+                              }
+                           }
+                        }
+                     } ],
+                     "where" : {
+                        "type" : "Not",
+                        "operand" : {
+                           "type" : "IsNull",
+                           "operand" : {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "$this",
+                                 "type" : "AliasRef"
+                              }
+                           }
+                        }
+                     },
+                     "return" : {
+                        "distinct" : false,
+                        "expression" : {
+                           "path" : "value",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "$this",
+                              "type" : "AliasRef"
+                           }
+                        }
+                     }
                   } ]
                }
             }
@@ -709,6 +1005,20 @@
                      "type" : "Literal"
                   } ]
                } ]
+            }
+         }, {
+            "name" : "Now",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Now"
+            }
+         }, {
+            "name" : "Today",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Today"
             }
          } ]
       }

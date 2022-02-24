@@ -1,4 +1,4 @@
-name: FOBT_just_soon_enough
+name: FOBT_not_quite_soon_enough
 data:
   - resourceType: Patient
     name: Joe Smith
@@ -6,12 +6,12 @@ data:
 # Now() is fixed at 2021-12-31
     birthDate: 1961-12-31
   - resourceType: Observation
-    category: 'OBSCAT#laboratory Laboratory'
     code: 'LOINC#27926-5 Hemoglobin.gastrointestinal.lower [Presence] in Stool by Immunoassay'
     valueString: positive
+    category: 'http://terminology.hl7.org/CodeSystem/observation-category#laboratory Laboratory'
     status: final
-    issued: 2020-12-31T00:00:00.00-10:00
+    issued: 2020-12-30T00:00:00.00-10:00
 results:
-  Numerator: true
+  Numerator: false
   Denominator Exclusions: false
   InDemographic: true
