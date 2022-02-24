@@ -1,0 +1,15 @@
+name: total_colectomy_exclusion
+data:
+  - resourceType: Patient
+    name: Joe Smith
+    gender: male
+# Now() is set at 2021-12-31
+    birthDate: 1961-12-31
+  - resourceType: Procedure
+    code: 'SNOMEDCT#26390003 Total colectomy (procedure)'
+    status: completed
+    performedDateTime: 2011-12-31
+results:  
+  Numerator: false
+  Denominator Exclusions: true
+  InDemographic: true
