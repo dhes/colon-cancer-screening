@@ -1,0 +1,16 @@
+name: malignant_neoplasm_of_colon_exclusion
+data:
+  - resourceType: Patient
+    name: Joe Smith
+    gender: male
+#   Now() is fixed at 2021-12-31
+#   make age in middle of colonoscopy range of 45-75
+    birthDate: 1961-12-31
+  - resourceType: Condition
+    code: 'SNOMED#363406005 Malignant neoplasm of colon (disorder)'
+    onsetDateTime: 2012-04-05
+results:
+  Numerator: false
+  Denominator Exclusions: true
+  InDemographic: true
+  
