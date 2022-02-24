@@ -57,11 +57,12 @@ define "Total Colectomy Performed":
 define "Fecal Occult Blood Test Performed":
   [Observation: "Fecal Occult Blood Test (FOBT)"] FecalOccultResult
             where FecalOccultResult.status in { 'final', 'amended', 'corrected' }
-              and exists ( FecalOccultResult.category FecalOccultResultCategory
-                  where "laboratory" in FHIRHelpers.ToConcept ( FecalOccultResultCategory ).codes
-              )
+              //and exists ( FecalOccultResult.category FecalOccultResultCategory
+              //    where "laboratory" in FHIRHelpers.ToConcept ( FecalOccultResultCategory ).codes
+              //)
               and FecalOccultResult.value is not null
               // and Global."Latest" ( FecalOccultResult.effective ) during "Measurement Period"
+              and FecalOccultResult.issued within 1 year of Now()
 
 define "Fecal Immunochemical Test DNA Performed":
   [Observation: "FIT DNA"] FitDNA

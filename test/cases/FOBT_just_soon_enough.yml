@@ -1,0 +1,17 @@
+name: FOBT_just_soon_enough
+data:
+  - resourceType: Patient
+    name: Joe Smith
+    gender: male
+# Now() is fixed at 2021-12-31
+    birthDate: 1961-12-31
+  - resourceType: Observation
+    code: 'LOINC#27926-5 Hemoglobin.gastrointestinal.lower [Presence] in Stool by Immunoassay'
+    valueString: positive
+    category: 'http://terminology.hl7.org/CodeSystem/observation-category#laboratory Laboratory'
+    status: final
+    issued: 2021-12-01T00:00:00.00-10:00
+results:
+  Numerator: true
+  Denominator Exclusions: false
+  InDemographic: true

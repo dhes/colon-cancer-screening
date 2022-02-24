@@ -287,80 +287,31 @@
                } ],
                "relationship" : [ ],
                "where" : {
-                  "type" : "And",
+                  "type" : "In",
                   "operand" : [ {
-                     "type" : "And",
+                     "name" : "ToString",
+                     "libraryName" : "FHIRHelpers",
+                     "type" : "FunctionRef",
                      "operand" : [ {
-                        "type" : "In",
-                        "operand" : [ {
-                           "name" : "ToString",
-                           "libraryName" : "FHIRHelpers",
-                           "type" : "FunctionRef",
-                           "operand" : [ {
-                              "path" : "status",
-                              "scope" : "FecalOccultResult",
-                              "type" : "Property"
-                           } ]
-                        }, {
-                           "type" : "List",
-                           "element" : [ {
-                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                              "value" : "final",
-                              "type" : "Literal"
-                           }, {
-                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                              "value" : "amended",
-                              "type" : "Literal"
-                           }, {
-                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                              "value" : "corrected",
-                              "type" : "Literal"
-                           } ]
-                        } ]
-                     }, {
-                        "type" : "Exists",
-                        "operand" : {
-                           "type" : "Query",
-                           "source" : [ {
-                              "alias" : "FecalOccultResultCategory",
-                              "expression" : {
-                                 "path" : "category",
-                                 "scope" : "FecalOccultResult",
-                                 "type" : "Property"
-                              }
-                           } ],
-                           "relationship" : [ ],
-                           "where" : {
-                              "type" : "In",
-                              "operand" : [ {
-                                 "name" : "laboratory",
-                                 "type" : "CodeRef"
-                              }, {
-                                 "path" : "codes",
-                                 "type" : "Property",
-                                 "source" : {
-                                    "name" : "ToConcept",
-                                    "libraryName" : "FHIRHelpers",
-                                    "type" : "FunctionRef",
-                                    "operand" : [ {
-                                       "name" : "FecalOccultResultCategory",
-                                       "type" : "AliasRef"
-                                    } ]
-                                 }
-                              } ]
-                           }
-                        }
+                        "path" : "status",
+                        "scope" : "FecalOccultResult",
+                        "type" : "Property"
                      } ]
                   }, {
-                     "type" : "Not",
-                     "operand" : {
-                        "type" : "IsNull",
-                        "operand" : {
-                           "path" : "value",
-                           "scope" : "FecalOccultResult",
-                           "type" : "Property"
-                        }
-                     }
+                     "type" : "List",
+                     "element" : [ {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "final",
+                        "type" : "Literal"
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "amended",
+                        "type" : "Literal"
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "corrected",
+                        "type" : "Literal"
+                     } ]
                   } ]
                }
             }
