@@ -80,14 +80,15 @@ define "Colonoscopy Performed":
                 // and Global."Normalize Interval" ( Colonoscopy.performed ) ends 10 years or less on or before 
                 // end of "Measurement Period"
               // I'll try to  use more basic pattern like: 
-              and Colonoscopy.performed during Interval[Today() - 10 years, Today()]
+              // and Colonoscopy.performed during Interval[Today() - 10 years, Today()]
+              and Colonoscopy.performed within 10 years of Now()
 
 define "Numerator":
-  exists "Colonoscopy Performed"
-            or exists "Fecal Occult Blood Test Performed"
-            or exists "Flexible Sigmoidoscopy Performed"
-            or exists "Fecal Immunochemical Test DNA Performed"
-            or exists "CT Colonography Performed"
+  exists "Colonoscopy Performed" or
+  exists "Fecal Occult Blood Test Performed" or
+  exists "Flexible Sigmoidoscopy Performed" or
+  exists "Fecal Immunochemical Test DNA Performed" or
+  exists "CT Colonography Performed"
 
 define "Malignant Neoplasm":
   [Condition: "Malignant Neoplasm of Colon"] ColorectalCancer

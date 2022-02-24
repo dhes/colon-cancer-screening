@@ -503,114 +503,53 @@
                         "type" : "Literal"
                      } ]
                   }, {
-                     "type" : "IncludedIn",
+                     "type" : "And",
                      "operand" : [ {
-                        "name" : "ToInterval",
-                        "libraryName" : "FHIRHelpers",
-                        "type" : "FunctionRef",
+                        "type" : "In",
                         "operand" : [ {
-                           "asType" : "{http://hl7.org/fhir}Period",
-                           "type" : "As",
-                           "operand" : {
-                              "path" : "performed",
-                              "scope" : "Colonoscopy",
-                              "type" : "Property"
+                           "name" : "ToDateTime",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "asType" : "{http://hl7.org/fhir}dateTime",
+                              "type" : "As",
+                              "operand" : {
+                                 "path" : "performed",
+                                 "scope" : "Colonoscopy",
+                                 "type" : "Property"
+                              }
+                           } ]
+                        }, {
+                           "lowClosed" : true,
+                           "highClosed" : true,
+                           "type" : "Interval",
+                           "low" : {
+                              "type" : "Subtract",
+                              "operand" : [ {
+                                 "type" : "Now"
+                              }, {
+                                 "value" : 10,
+                                 "unit" : "years",
+                                 "type" : "Quantity"
+                              } ]
+                           },
+                           "high" : {
+                              "type" : "Add",
+                              "operand" : [ {
+                                 "type" : "Now"
+                              }, {
+                                 "value" : 10,
+                                 "unit" : "years",
+                                 "type" : "Quantity"
+                              } ]
                            }
                         } ]
                      }, {
-                        "type" : "Interval",
-                        "low" : {
-                           "type" : "ToDateTime",
+                        "type" : "Not",
+                        "operand" : {
+                           "type" : "IsNull",
                            "operand" : {
-                              "path" : "low",
-                              "type" : "Property",
-                              "source" : {
-                                 "lowClosed" : true,
-                                 "highClosed" : true,
-                                 "type" : "Interval",
-                                 "low" : {
-                                    "type" : "Subtract",
-                                    "operand" : [ {
-                                       "type" : "Today"
-                                    }, {
-                                       "value" : 10,
-                                       "unit" : "years",
-                                       "type" : "Quantity"
-                                    } ]
-                                 },
-                                 "high" : {
-                                    "type" : "Today"
-                                 }
-                              }
-                           }
-                        },
-                        "lowClosedExpression" : {
-                           "path" : "lowClosed",
-                           "type" : "Property",
-                           "source" : {
-                              "lowClosed" : true,
-                              "highClosed" : true,
-                              "type" : "Interval",
-                              "low" : {
-                                 "type" : "Subtract",
-                                 "operand" : [ {
-                                    "type" : "Today"
-                                 }, {
-                                    "value" : 10,
-                                    "unit" : "years",
-                                    "type" : "Quantity"
-                                 } ]
-                              },
-                              "high" : {
-                                 "type" : "Today"
-                              }
-                           }
-                        },
-                        "high" : {
-                           "type" : "ToDateTime",
-                           "operand" : {
-                              "path" : "high",
-                              "type" : "Property",
-                              "source" : {
-                                 "lowClosed" : true,
-                                 "highClosed" : true,
-                                 "type" : "Interval",
-                                 "low" : {
-                                    "type" : "Subtract",
-                                    "operand" : [ {
-                                       "type" : "Today"
-                                    }, {
-                                       "value" : 10,
-                                       "unit" : "years",
-                                       "type" : "Quantity"
-                                    } ]
-                                 },
-                                 "high" : {
-                                    "type" : "Today"
-                                 }
-                              }
-                           }
-                        },
-                        "highClosedExpression" : {
-                           "path" : "highClosed",
-                           "type" : "Property",
-                           "source" : {
-                              "lowClosed" : true,
-                              "highClosed" : true,
-                              "type" : "Interval",
-                              "low" : {
-                                 "type" : "Subtract",
-                                 "operand" : [ {
-                                    "type" : "Today"
-                                 }, {
-                                    "value" : 10,
-                                    "unit" : "years",
-                                    "type" : "Quantity"
-                                 } ]
-                              },
-                              "high" : {
-                                 "type" : "Today"
-                              }
+                              "type" : "Now"
                            }
                         }
                      } ]

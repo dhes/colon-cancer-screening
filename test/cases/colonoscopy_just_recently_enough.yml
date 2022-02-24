@@ -1,0 +1,16 @@
+name: colonoscopy_just_recently_enough
+data:
+  - resourceType: Patient
+    name: Joe Smith
+    gender: male
+#   Now() is fixed at 2021-12-31 
+#   make age in middle of colonoscopy range 45-75y
+    birthDate: 1961-12-31
+  - resourceType: Procedure
+    code: 'SNOMEDCT#73761001 Colonoscopy (procedure)'
+    status: completed
+    performedDateTime: 2011-12-31T00:00:00.0-10:00
+results:
+  Numerator: true
+  Denominator Exclusions: false
+  InDemographic: true
