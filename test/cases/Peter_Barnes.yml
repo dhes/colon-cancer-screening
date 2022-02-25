@@ -3,6 +3,7 @@ data:
   - resourceType: Patient
     name: Peter Barnes
     gender: male
+# Now() is fixed at 2021-12-31T00:00:00.0Z
     birthDate: 1953-06-05
   - resourceType: Observation
     code: 'LOINC#72166-2 Tobacco smoking status'

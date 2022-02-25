@@ -1,11 +1,9 @@
-name: not_included_too_old
+name: edit_me_not_included_too_old
 data:
   - resourceType: Patient
     name: Joe Smith
     gender: male
-# Unless today is 2021-11-10
-# ...please adjust the birthdate to make this patient's   
-# ...age 76 years.
+# Now() is fixed at 2021-12-31T00:00:00.0Z
     birthDate: 1945-11-09
 results:
   Numerator: false

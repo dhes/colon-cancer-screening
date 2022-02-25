@@ -1,11 +1,9 @@
-name: not_included_female
+name: edit_me_not_included_female
 data:
   - resourceType: Patient
     name: Jane Smith
     gender: female
-# Unless today is 2021-11-10
-# ...please adjust the birthdate to make this patient's   
-# ...age 65-75 years. 
+# Now() is fixed at 2021-12-31T00:00:00.0Z
     birthDate: 1951-11-10
 results:
   Numerator: false

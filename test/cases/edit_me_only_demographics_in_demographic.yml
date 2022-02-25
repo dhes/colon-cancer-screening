@@ -1,11 +1,11 @@
-name: just_old_enough
+name: edit_me_only_demographics_in_demographic
 data:
   - resourceType: Patient
     name: Joe Smith
     gender: male
 # Now() is fixed at 2021-12-31T00:00:00.0Z
-    birthDate: 1976-12-31
+    birthDate: 1961-11-10
 results:
   Numerator: false
   Denominator Exclusions: false
-  InDemographic: true
+  InDemographic: True

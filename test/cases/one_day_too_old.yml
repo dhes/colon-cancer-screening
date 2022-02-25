@@ -3,7 +3,7 @@ data:
   - resourceType: Patient
     name: Joe Smith
     gender: male
-# Now() is set at 2021-12-31
+# Now() is set at 2021-12-31T00:00:00.0Z
     birthDate: 1945-12-31
   - resourceType: Observation
     code: 'LOINC#72166-2 Tobacco smoking status'

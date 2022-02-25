@@ -209,20 +209,167 @@
                } ],
                "relationship" : [ ],
                "where" : {
-                  "type" : "Equal",
+                  "type" : "And",
                   "operand" : [ {
-                     "name" : "ToString",
-                     "libraryName" : "FHIRHelpers",
-                     "type" : "FunctionRef",
+                     "type" : "Equal",
                      "operand" : [ {
-                        "path" : "status",
-                        "scope" : "FlexibleSigmoidoscopy",
-                        "type" : "Property"
+                        "name" : "ToString",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "path" : "status",
+                           "scope" : "FlexibleSigmoidoscopy",
+                           "type" : "Property"
+                        } ]
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "completed",
+                        "type" : "Literal"
                      } ]
                   }, {
-                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                     "value" : "completed",
-                     "type" : "Literal"
+                     "type" : "And",
+                     "operand" : [ {
+                        "type" : "In",
+                        "operand" : [ {
+                           "name" : "ToDateTime",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "asType" : "{http://hl7.org/fhir}dateTime",
+                              "type" : "As",
+                              "operand" : {
+                                 "path" : "performed",
+                                 "scope" : "FlexibleSigmoidoscopy",
+                                 "type" : "Property"
+                              }
+                           } ]
+                        }, {
+                           "lowClosed" : true,
+                           "highClosed" : true,
+                           "type" : "Interval",
+                           "low" : {
+                              "type" : "Subtract",
+                              "operand" : [ {
+                                 "type" : "Now"
+                              }, {
+                                 "value" : 5,
+                                 "unit" : "years",
+                                 "type" : "Quantity"
+                              } ]
+                           },
+                           "high" : {
+                              "type" : "Add",
+                              "operand" : [ {
+                                 "type" : "Now"
+                              }, {
+                                 "value" : 5,
+                                 "unit" : "years",
+                                 "type" : "Quantity"
+                              } ]
+                           }
+                        } ]
+                     }, {
+                        "type" : "Not",
+                        "operand" : {
+                           "type" : "IsNull",
+                           "operand" : {
+                              "type" : "Now"
+                           }
+                        }
+                     } ]
+                  } ]
+               }
+            }
+         }, {
+            "name" : "Colonoscopy Performed",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "Colonoscopy",
+                  "expression" : {
+                     "dataType" : "{http://hl7.org/fhir}Procedure",
+                     "templateId" : "http://hl7.org/fhir/StructureDefinition/Procedure",
+                     "codeProperty" : "code",
+                     "codeComparator" : "in",
+                     "type" : "Retrieve",
+                     "codes" : {
+                        "name" : "Colonoscopy",
+                        "type" : "ValueSetRef"
+                     }
+                  }
+               } ],
+               "relationship" : [ ],
+               "where" : {
+                  "type" : "And",
+                  "operand" : [ {
+                     "type" : "Equal",
+                     "operand" : [ {
+                        "name" : "ToString",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "path" : "status",
+                           "scope" : "Colonoscopy",
+                           "type" : "Property"
+                        } ]
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "completed",
+                        "type" : "Literal"
+                     } ]
+                  }, {
+                     "type" : "And",
+                     "operand" : [ {
+                        "type" : "In",
+                        "operand" : [ {
+                           "name" : "ToDateTime",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "asType" : "{http://hl7.org/fhir}dateTime",
+                              "type" : "As",
+                              "operand" : {
+                                 "path" : "performed",
+                                 "scope" : "Colonoscopy",
+                                 "type" : "Property"
+                              }
+                           } ]
+                        }, {
+                           "lowClosed" : true,
+                           "highClosed" : true,
+                           "type" : "Interval",
+                           "low" : {
+                              "type" : "Subtract",
+                              "operand" : [ {
+                                 "type" : "Now"
+                              }, {
+                                 "value" : 10,
+                                 "unit" : "years",
+                                 "type" : "Quantity"
+                              } ]
+                           },
+                           "high" : {
+                              "type" : "Add",
+                              "operand" : [ {
+                                 "type" : "Now"
+                              }, {
+                                 "value" : 10,
+                                 "unit" : "years",
+                                 "type" : "Quantity"
+                              } ]
+                           }
+                        } ]
+                     }, {
+                        "type" : "Not",
+                        "operand" : {
+                           "type" : "IsNull",
+                           "operand" : {
+                              "type" : "Now"
+                           }
+                        }
+                     } ]
                   } ]
                }
             }
@@ -489,129 +636,6 @@
                }
             }
          }, {
-            "name" : "FOBT_Labs",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "Query",
-               "source" : [ {
-                  "alias" : "FOBTP",
-                  "expression" : {
-                     "name" : "Fecal Occult Blood Test Performed",
-                     "type" : "ExpressionRef"
-                  }
-               } ],
-               "relationship" : [ ],
-               "where" : {
-                  "type" : "In",
-                  "operand" : [ {
-                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                     "value" : "laboratory",
-                     "type" : "Literal"
-                  }, {
-                     "type" : "Query",
-                     "source" : [ {
-                        "alias" : "$this",
-                        "expression" : {
-                           "type" : "Query",
-                           "source" : [ {
-                              "alias" : "$this",
-                              "expression" : {
-                                 "type" : "Flatten",
-                                 "operand" : {
-                                    "type" : "Query",
-                                    "source" : [ {
-                                       "alias" : "$this",
-                                       "expression" : {
-                                          "path" : "category",
-                                          "scope" : "FOBTP",
-                                          "type" : "Property"
-                                       }
-                                    } ],
-                                    "where" : {
-                                       "type" : "Not",
-                                       "operand" : {
-                                          "type" : "IsNull",
-                                          "operand" : {
-                                             "path" : "coding",
-                                             "type" : "Property",
-                                             "source" : {
-                                                "name" : "$this",
-                                                "type" : "AliasRef"
-                                             }
-                                          }
-                                       }
-                                    },
-                                    "return" : {
-                                       "distinct" : false,
-                                       "expression" : {
-                                          "path" : "coding",
-                                          "type" : "Property",
-                                          "source" : {
-                                             "name" : "$this",
-                                             "type" : "AliasRef"
-                                          }
-                                       }
-                                    }
-                                 }
-                              }
-                           } ],
-                           "where" : {
-                              "type" : "Not",
-                              "operand" : {
-                                 "type" : "IsNull",
-                                 "operand" : {
-                                    "path" : "code",
-                                    "type" : "Property",
-                                    "source" : {
-                                       "name" : "$this",
-                                       "type" : "AliasRef"
-                                    }
-                                 }
-                              }
-                           },
-                           "return" : {
-                              "distinct" : false,
-                              "expression" : {
-                                 "path" : "code",
-                                 "type" : "Property",
-                                 "source" : {
-                                    "name" : "$this",
-                                    "type" : "AliasRef"
-                                 }
-                              }
-                           }
-                        }
-                     } ],
-                     "where" : {
-                        "type" : "Not",
-                        "operand" : {
-                           "type" : "IsNull",
-                           "operand" : {
-                              "path" : "value",
-                              "type" : "Property",
-                              "source" : {
-                                 "name" : "$this",
-                                 "type" : "AliasRef"
-                              }
-                           }
-                        }
-                     },
-                     "return" : {
-                        "distinct" : false,
-                        "expression" : {
-                           "path" : "value",
-                           "type" : "Property",
-                           "source" : {
-                              "name" : "$this",
-                              "type" : "AliasRef"
-                           }
-                        }
-                     }
-                  } ]
-               }
-            }
-         }, {
             "name" : "Fecal Immunochemical Test DNA Performed",
             "context" : "Patient",
             "accessLevel" : "Public",
@@ -707,99 +731,6 @@
                            "type" : "Property"
                         }
                      }
-                  } ]
-               }
-            }
-         }, {
-            "name" : "Colonoscopy Performed",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "Query",
-               "source" : [ {
-                  "alias" : "Colonoscopy",
-                  "expression" : {
-                     "dataType" : "{http://hl7.org/fhir}Procedure",
-                     "templateId" : "http://hl7.org/fhir/StructureDefinition/Procedure",
-                     "codeProperty" : "code",
-                     "codeComparator" : "in",
-                     "type" : "Retrieve",
-                     "codes" : {
-                        "name" : "Colonoscopy",
-                        "type" : "ValueSetRef"
-                     }
-                  }
-               } ],
-               "relationship" : [ ],
-               "where" : {
-                  "type" : "And",
-                  "operand" : [ {
-                     "type" : "Equal",
-                     "operand" : [ {
-                        "name" : "ToString",
-                        "libraryName" : "FHIRHelpers",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "path" : "status",
-                           "scope" : "Colonoscopy",
-                           "type" : "Property"
-                        } ]
-                     }, {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "completed",
-                        "type" : "Literal"
-                     } ]
-                  }, {
-                     "type" : "And",
-                     "operand" : [ {
-                        "type" : "In",
-                        "operand" : [ {
-                           "name" : "ToDateTime",
-                           "libraryName" : "FHIRHelpers",
-                           "type" : "FunctionRef",
-                           "operand" : [ {
-                              "asType" : "{http://hl7.org/fhir}dateTime",
-                              "type" : "As",
-                              "operand" : {
-                                 "path" : "performed",
-                                 "scope" : "Colonoscopy",
-                                 "type" : "Property"
-                              }
-                           } ]
-                        }, {
-                           "lowClosed" : true,
-                           "highClosed" : true,
-                           "type" : "Interval",
-                           "low" : {
-                              "type" : "Subtract",
-                              "operand" : [ {
-                                 "type" : "Now"
-                              }, {
-                                 "value" : 10,
-                                 "unit" : "years",
-                                 "type" : "Quantity"
-                              } ]
-                           },
-                           "high" : {
-                              "type" : "Add",
-                              "operand" : [ {
-                                 "type" : "Now"
-                              }, {
-                                 "value" : 10,
-                                 "unit" : "years",
-                                 "type" : "Quantity"
-                              } ]
-                           }
-                        } ]
-                     }, {
-                        "type" : "Not",
-                        "operand" : {
-                           "type" : "IsNull",
-                           "operand" : {
-                              "type" : "Now"
-                           }
-                        }
-                     } ]
                   } ]
                }
             }

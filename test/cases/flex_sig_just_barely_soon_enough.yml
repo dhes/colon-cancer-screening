@@ -1,0 +1,15 @@
+name: flex_sig_just_barely_soon_enough
+data:
+  - resourceType: Patient
+    name: Joe Smith
+    gender: male
+# Now() is fixed at 2021-12-31T00:00:00.0Z 
+    birthDate: 1961-12-31
+  - resourceType: Procedure
+    code: 'SNOMED#44441009 Flexible fibreoptic sigmoidoscopy'
+    status: completed
+    performedDateTime: 2016-12-31T00:00:00.0-10:00
+results:
+  Numerator: true
+  Denominator Exclusions: false
+  InDemographic: true

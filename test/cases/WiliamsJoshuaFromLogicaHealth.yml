@@ -4,6 +4,7 @@ data:
   - resourceType: Patient
     name: Joshua Williams
     gender: male
+# Now() is fixed at 2021-12-31T00:00:00.0Z
     birthDate: 1953-06-05
   - resourceType: Observation
     code: 'LOINC#13457-7 Cholesterol in LDL Calc [Mass/Vol]'

@@ -1,4 +1,4 @@
-name: total_colectomy_exclusion
+name: flex_sig_one_day_too_long_ago
 data:
   - resourceType: Patient
     name: Joe Smith
@@ -6,10 +6,10 @@ data:
 # Now() is fixed at 2021-12-31T00:00:00.0Z
     birthDate: 1961-12-31
   - resourceType: Procedure
-    code: 'SNOMEDCT#26390003 Total colectomy (procedure)'
+    code: 'SNOMED#44441009 Flexible fibreoptic sigmoidoscopy'
     status: completed
-    performedDateTime: 2011-12-31
-results:  
+    performedDateTime: 2016-12-30T00:00:00.0-10:00
+results:
   Numerator: false
-  Denominator Exclusions: true
+  Denominator Exclusions: false
   InDemographic: true

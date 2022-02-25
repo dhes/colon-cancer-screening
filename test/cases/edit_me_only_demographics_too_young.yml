@@ -1,10 +1,10 @@
-name: only_demographics_too_old
+name: edit_me_only_demographics_too_young
 data:
   - resourceType: Patient
     name: Joe Smith
     gender: male
-# ...age 76y years on 1945-11-27
-    birthDate: 1945-11-27
+# Now() is fixed at 2021-12-31T00:00:00.0Z
+    birthDate: 2002-11-27
 results:
   Numerator: false
   Denominator Exclusions: false

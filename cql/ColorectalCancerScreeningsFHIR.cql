@@ -41,52 +41,13 @@ code "laboratory": 'laboratory' from "ObservationCategoryCodes" display 'laborat
 
 context Patient
 
-
+// DH edited out; used .performed within 5 years of Now() instead
+// and Global."Normalize Interval" ( FlexibleSigmoidoscopy.performed ) ends 5 years or less on or before 
+// end of "Measurement Period"
 define "Flexible Sigmoidoscopy Performed":
   [Procedure: "Flexible Sigmoidoscopy"] FlexibleSigmoidoscopy
-            where FlexibleSigmoidoscopy.status = 'completed'
-              // and Global."Normalize Interval" ( FlexibleSigmoidoscopy.performed ) ends 5 years or less on or before 
-              // end of "Measurement Period"
-
-define "Total Colectomy Performed":
-  [Procedure: "Total Colectomy"] Colectomy
-            where Colectomy.status = 'completed'
-              // and Global."Normalize Interval" ( Colectomy.performed ) ends on or before 
-              // end of "Measurement Period"
-
-
-
-define "Fecal Occult Blood Test Performed":
-  [Observation: "Fecal Occult Blood Test (FOBT)"] FecalOccultResult
-    where FecalOccultResult.status in { 'final', 'amended', 'corrected' }
-      // and exists ( FecalOccultResult.category FecalOccultResultCategory
-      //    where "laboratory" in FHIRHelpers.ToConcept ( FecalOccultResultCategory ).codes
-      // )
-      // DH I'm not sure why the above three lines don't work, so try it without the FHIRHelper, like this: 
-      and 'laboratory' in FecalOccultResult.category.coding.code.value
-      and FecalOccultResult.value is not null
-      // and Global."Latest" ( FecalOccultResult.effective ) during "Measurement Period"
-      and FecalOccultResult.issued within 1 year of Now()
-
-// DH for troubleshooting
-define FOBT_Labs:
-  "Fecal Occult Blood Test Performed" FOBTP
-    where 'laboratory' in FOBTP.category.coding.code.value
-
-// DH for troubleshooting
-// define FecalOccultResultCategories:
-//   [Observation: "Fecal Occult Blood Test (FOBT)"] FecalOccultResult 
-//     return FHIRHelpers.ToConcept(FecalOccultResult.code)
-
-define "Fecal Immunochemical Test DNA Performed":
-  [Observation: "FIT DNA"] FitDNA
-            where FitDNA.status in { 'final', 'amended', 'corrected' }
-              and exists ( FitDNA.category FitDNACategory
-                  where "laboratory" in FHIRHelpers.ToConcept ( FitDNACategory ).codes
-              )
-              and FitDNA.value is not null
-              // and Global."Latest" ( FitDNA.effective ) 3 years or less on or before 
-              // end of "Measurement Period"
+    where FlexibleSigmoidoscopy.status = 'completed'
+      and FlexibleSigmoidoscopy.performed within 5 years of Now()
 
 define "Colonoscopy Performed":
   [Procedure: "Colonoscopy"] Colonoscopy
@@ -97,6 +58,40 @@ define "Colonoscopy Performed":
               // I'll try to  use more basic pattern like: 
               // and Colonoscopy.performed during Interval[Today() - 10 years, Today()]
               and Colonoscopy.performed within 10 years of Now()
+
+define "Total Colectomy Performed":
+  [Procedure: "Total Colectomy"] Colectomy
+            where Colectomy.status = 'completed'
+              // and Global."Normalize Interval" ( Colectomy.performed ) ends on or before 
+              // end of "Measurement Period"
+
+define "Fecal Occult Blood Test Performed":
+  [Observation: "Fecal Occult Blood Test (FOBT)"] FecalOccultResult
+    where FecalOccultResult.status in { 'final', 'amended', 'corrected' }
+      // and exists ( FecalOccultResult.category FecalOccultResultCategory
+      //    where "laboratory" in FHIRHelpers.ToConcept ( FecalOccultResultCategory ).codes
+      // )
+      // DH I'm not sure why the above three lines don't work (they produce null when it should be true,
+      // ... so try it without the FHIRHelper, like this: 
+      and 'laboratory' in FecalOccultResult.category.coding.code.value
+      and FecalOccultResult.value is not null
+      // and Global."Latest" ( FecalOccultResult.effective ) during "Measurement Period"
+      and FecalOccultResult.issued within 1 year of Now()
+
+// DH for troubleshooting
+// define FOBT_Labs:
+// "Fecal Occult Blood Test Performed" FOBTP
+//   where 'laboratory' in FOBTP.category.coding.code.value
+
+define "Fecal Immunochemical Test DNA Performed":
+  [Observation: "FIT DNA"] FitDNA
+            where FitDNA.status in { 'final', 'amended', 'corrected' }
+              and exists ( FitDNA.category FitDNACategory
+                  where "laboratory" in FHIRHelpers.ToConcept ( FitDNACategory ).codes
+              )
+              and FitDNA.value is not null
+              // and Global."Latest" ( FitDNA.effective ) 3 years or less on or before 
+              // end of "Measurement Period"
 
 define "Numerator":
   exists "Colonoscopy Performed" or
