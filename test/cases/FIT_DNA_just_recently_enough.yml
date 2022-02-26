@@ -1,0 +1,17 @@
+name: FIT_DNA_just_recently_enough
+data:
+  - resourceType: Patient
+    name: Jane Smith
+    gender: female
+# Now() is fixed at 2021-12-31T00:00:00.0Z
+    birthDate: 1961-12-31
+  - resourceType: Observation
+    category: 'OBSCAT#laboratory Laboratory'
+    code: 'LOINC#77354-9 Noninvasive colorectal cancer DNA and occult blood screening [Presence] in Stool'
+    valueString: positive
+    status: final
+    issued: 2018-12-31T00:00:00.00-10:00
+results:
+  Numerator: true
+  Denominator Exclusions: false
+  InDemographic: true

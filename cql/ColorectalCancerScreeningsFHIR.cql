@@ -86,12 +86,14 @@ define "Fecal Occult Blood Test Performed":
 define "Fecal Immunochemical Test DNA Performed":
   [Observation: "FIT DNA"] FitDNA
             where FitDNA.status in { 'final', 'amended', 'corrected' }
-              and exists ( FitDNA.category FitDNACategory
-                  where "laboratory" in FHIRHelpers.ToConcept ( FitDNACategory ).codes
-              )
+              // and exists ( FitDNA.category FitDNACategory
+              //     where "laboratory" in FHIRHelpers.ToConcept ( FitDNACategory ).codes
+              // )
+              and 'laboratory' in FitDNA.category.coding.code.value
               and FitDNA.value is not null
               // and Global."Latest" ( FitDNA.effective ) 3 years or less on or before 
               // end of "Measurement Period"
+              and FitDNA.issued within 3 years of Now()
 
 define "Numerator":
   exists "Colonoscopy Performed" or
@@ -120,6 +122,9 @@ define "CT Colonography Performed":
             where Colonography.status in { 'final', 'amended', 'corrected', 'appended' }
               // and Global."Normalize Interval" ( Colonography.effective ) ends 5 years or less on or before 
               // end of "Measurement Period"
+              and 'laboratory' in Colonography.category.coding.code.value
+              and Colonography.issued within 5 years of Now()
+
 
 define AgeInYears:
    AgeInYears()

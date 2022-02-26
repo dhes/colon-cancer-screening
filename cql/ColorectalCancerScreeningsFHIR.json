@@ -661,76 +661,200 @@
                   "operand" : [ {
                      "type" : "And",
                      "operand" : [ {
-                        "type" : "In",
+                        "type" : "And",
                         "operand" : [ {
-                           "name" : "ToString",
-                           "libraryName" : "FHIRHelpers",
-                           "type" : "FunctionRef",
+                           "type" : "In",
                            "operand" : [ {
-                              "path" : "status",
-                              "scope" : "FitDNA",
-                              "type" : "Property"
+                              "name" : "ToString",
+                              "libraryName" : "FHIRHelpers",
+                              "type" : "FunctionRef",
+                              "operand" : [ {
+                                 "path" : "status",
+                                 "scope" : "FitDNA",
+                                 "type" : "Property"
+                              } ]
+                           }, {
+                              "type" : "List",
+                              "element" : [ {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                 "value" : "final",
+                                 "type" : "Literal"
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                 "value" : "amended",
+                                 "type" : "Literal"
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                 "value" : "corrected",
+                                 "type" : "Literal"
+                              } ]
                            } ]
                         }, {
-                           "type" : "List",
-                           "element" : [ {
+                           "type" : "In",
+                           "operand" : [ {
                               "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                              "value" : "final",
+                              "value" : "laboratory",
                               "type" : "Literal"
                            }, {
-                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                              "value" : "amended",
-                              "type" : "Literal"
-                           }, {
-                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                              "value" : "corrected",
-                              "type" : "Literal"
+                              "type" : "Query",
+                              "source" : [ {
+                                 "alias" : "$this",
+                                 "expression" : {
+                                    "type" : "Query",
+                                    "source" : [ {
+                                       "alias" : "$this",
+                                       "expression" : {
+                                          "type" : "Flatten",
+                                          "operand" : {
+                                             "type" : "Query",
+                                             "source" : [ {
+                                                "alias" : "$this",
+                                                "expression" : {
+                                                   "path" : "category",
+                                                   "scope" : "FitDNA",
+                                                   "type" : "Property"
+                                                }
+                                             } ],
+                                             "where" : {
+                                                "type" : "Not",
+                                                "operand" : {
+                                                   "type" : "IsNull",
+                                                   "operand" : {
+                                                      "path" : "coding",
+                                                      "type" : "Property",
+                                                      "source" : {
+                                                         "name" : "$this",
+                                                         "type" : "AliasRef"
+                                                      }
+                                                   }
+                                                }
+                                             },
+                                             "return" : {
+                                                "distinct" : false,
+                                                "expression" : {
+                                                   "path" : "coding",
+                                                   "type" : "Property",
+                                                   "source" : {
+                                                      "name" : "$this",
+                                                      "type" : "AliasRef"
+                                                   }
+                                                }
+                                             }
+                                          }
+                                       }
+                                    } ],
+                                    "where" : {
+                                       "type" : "Not",
+                                       "operand" : {
+                                          "type" : "IsNull",
+                                          "operand" : {
+                                             "path" : "code",
+                                             "type" : "Property",
+                                             "source" : {
+                                                "name" : "$this",
+                                                "type" : "AliasRef"
+                                             }
+                                          }
+                                       }
+                                    },
+                                    "return" : {
+                                       "distinct" : false,
+                                       "expression" : {
+                                          "path" : "code",
+                                          "type" : "Property",
+                                          "source" : {
+                                             "name" : "$this",
+                                             "type" : "AliasRef"
+                                          }
+                                       }
+                                    }
+                                 }
+                              } ],
+                              "where" : {
+                                 "type" : "Not",
+                                 "operand" : {
+                                    "type" : "IsNull",
+                                    "operand" : {
+                                       "path" : "value",
+                                       "type" : "Property",
+                                       "source" : {
+                                          "name" : "$this",
+                                          "type" : "AliasRef"
+                                       }
+                                    }
+                                 }
+                              },
+                              "return" : {
+                                 "distinct" : false,
+                                 "expression" : {
+                                    "path" : "value",
+                                    "type" : "Property",
+                                    "source" : {
+                                       "name" : "$this",
+                                       "type" : "AliasRef"
+                                    }
+                                 }
+                              }
                            } ]
                         } ]
                      }, {
-                        "type" : "Exists",
+                        "type" : "Not",
                         "operand" : {
-                           "type" : "Query",
-                           "source" : [ {
-                              "alias" : "FitDNACategory",
-                              "expression" : {
-                                 "path" : "category",
-                                 "scope" : "FitDNA",
-                                 "type" : "Property"
-                              }
-                           } ],
-                           "relationship" : [ ],
-                           "where" : {
-                              "type" : "In",
-                              "operand" : [ {
-                                 "name" : "laboratory",
-                                 "type" : "CodeRef"
-                              }, {
-                                 "path" : "codes",
-                                 "type" : "Property",
-                                 "source" : {
-                                    "name" : "ToConcept",
-                                    "libraryName" : "FHIRHelpers",
-                                    "type" : "FunctionRef",
-                                    "operand" : [ {
-                                       "name" : "FitDNACategory",
-                                       "type" : "AliasRef"
-                                    } ]
-                                 }
-                              } ]
+                           "type" : "IsNull",
+                           "operand" : {
+                              "path" : "value",
+                              "scope" : "FitDNA",
+                              "type" : "Property"
                            }
                         }
                      } ]
                   }, {
-                     "type" : "Not",
-                     "operand" : {
-                        "type" : "IsNull",
+                     "type" : "And",
+                     "operand" : [ {
+                        "type" : "In",
+                        "operand" : [ {
+                           "name" : "ToDateTime",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "path" : "issued",
+                              "scope" : "FitDNA",
+                              "type" : "Property"
+                           } ]
+                        }, {
+                           "lowClosed" : true,
+                           "highClosed" : true,
+                           "type" : "Interval",
+                           "low" : {
+                              "type" : "Subtract",
+                              "operand" : [ {
+                                 "type" : "Now"
+                              }, {
+                                 "value" : 3,
+                                 "unit" : "years",
+                                 "type" : "Quantity"
+                              } ]
+                           },
+                           "high" : {
+                              "type" : "Add",
+                              "operand" : [ {
+                                 "type" : "Now"
+                              }, {
+                                 "value" : 3,
+                                 "unit" : "years",
+                                 "type" : "Quantity"
+                              } ]
+                           }
+                        } ]
+                     }, {
+                        "type" : "Not",
                         "operand" : {
-                           "path" : "value",
-                           "scope" : "FitDNA",
-                           "type" : "Property"
+                           "type" : "IsNull",
+                           "operand" : {
+                              "type" : "Now"
+                           }
                         }
-                     }
+                     } ]
                   } ]
                }
             }
@@ -756,34 +880,194 @@
                } ],
                "relationship" : [ ],
                "where" : {
-                  "type" : "In",
+                  "type" : "And",
                   "operand" : [ {
-                     "name" : "ToString",
-                     "libraryName" : "FHIRHelpers",
-                     "type" : "FunctionRef",
+                     "type" : "And",
                      "operand" : [ {
-                        "path" : "status",
-                        "scope" : "Colonography",
-                        "type" : "Property"
+                        "type" : "In",
+                        "operand" : [ {
+                           "name" : "ToString",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "path" : "status",
+                              "scope" : "Colonography",
+                              "type" : "Property"
+                           } ]
+                        }, {
+                           "type" : "List",
+                           "element" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "final",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "amended",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "corrected",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "appended",
+                              "type" : "Literal"
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "In",
+                        "operand" : [ {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : "laboratory",
+                           "type" : "Literal"
+                        }, {
+                           "type" : "Query",
+                           "source" : [ {
+                              "alias" : "$this",
+                              "expression" : {
+                                 "type" : "Query",
+                                 "source" : [ {
+                                    "alias" : "$this",
+                                    "expression" : {
+                                       "type" : "Flatten",
+                                       "operand" : {
+                                          "type" : "Query",
+                                          "source" : [ {
+                                             "alias" : "$this",
+                                             "expression" : {
+                                                "path" : "category",
+                                                "scope" : "Colonography",
+                                                "type" : "Property"
+                                             }
+                                          } ],
+                                          "where" : {
+                                             "type" : "Not",
+                                             "operand" : {
+                                                "type" : "IsNull",
+                                                "operand" : {
+                                                   "path" : "coding",
+                                                   "type" : "Property",
+                                                   "source" : {
+                                                      "name" : "$this",
+                                                      "type" : "AliasRef"
+                                                   }
+                                                }
+                                             }
+                                          },
+                                          "return" : {
+                                             "distinct" : false,
+                                             "expression" : {
+                                                "path" : "coding",
+                                                "type" : "Property",
+                                                "source" : {
+                                                   "name" : "$this",
+                                                   "type" : "AliasRef"
+                                                }
+                                             }
+                                          }
+                                       }
+                                    }
+                                 } ],
+                                 "where" : {
+                                    "type" : "Not",
+                                    "operand" : {
+                                       "type" : "IsNull",
+                                       "operand" : {
+                                          "path" : "code",
+                                          "type" : "Property",
+                                          "source" : {
+                                             "name" : "$this",
+                                             "type" : "AliasRef"
+                                          }
+                                       }
+                                    }
+                                 },
+                                 "return" : {
+                                    "distinct" : false,
+                                    "expression" : {
+                                       "path" : "code",
+                                       "type" : "Property",
+                                       "source" : {
+                                          "name" : "$this",
+                                          "type" : "AliasRef"
+                                       }
+                                    }
+                                 }
+                              }
+                           } ],
+                           "where" : {
+                              "type" : "Not",
+                              "operand" : {
+                                 "type" : "IsNull",
+                                 "operand" : {
+                                    "path" : "value",
+                                    "type" : "Property",
+                                    "source" : {
+                                       "name" : "$this",
+                                       "type" : "AliasRef"
+                                    }
+                                 }
+                              }
+                           },
+                           "return" : {
+                              "distinct" : false,
+                              "expression" : {
+                                 "path" : "value",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "$this",
+                                    "type" : "AliasRef"
+                                 }
+                              }
+                           }
+                        } ]
                      } ]
                   }, {
-                     "type" : "List",
-                     "element" : [ {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "final",
-                        "type" : "Literal"
+                     "type" : "And",
+                     "operand" : [ {
+                        "type" : "In",
+                        "operand" : [ {
+                           "name" : "ToDateTime",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "path" : "issued",
+                              "scope" : "Colonography",
+                              "type" : "Property"
+                           } ]
+                        }, {
+                           "lowClosed" : true,
+                           "highClosed" : true,
+                           "type" : "Interval",
+                           "low" : {
+                              "type" : "Subtract",
+                              "operand" : [ {
+                                 "type" : "Now"
+                              }, {
+                                 "value" : 5,
+                                 "unit" : "years",
+                                 "type" : "Quantity"
+                              } ]
+                           },
+                           "high" : {
+                              "type" : "Add",
+                              "operand" : [ {
+                                 "type" : "Now"
+                              }, {
+                                 "value" : 5,
+                                 "unit" : "years",
+                                 "type" : "Quantity"
+                              } ]
+                           }
+                        } ]
                      }, {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "amended",
-                        "type" : "Literal"
-                     }, {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "corrected",
-                        "type" : "Literal"
-                     }, {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "appended",
-                        "type" : "Literal"
+                        "type" : "Not",
+                        "operand" : {
+                           "type" : "IsNull",
+                           "operand" : {
+                              "type" : "Now"
+                           }
+                        }
                      } ]
                   } ]
                }

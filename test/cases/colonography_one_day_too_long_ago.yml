@@ -1,0 +1,17 @@
+name: colonography_one_day_too_long_ago
+data:
+  - resourceType: Patient
+    name: Joe Smith
+    gender: male
+# Now() is fixed at 2021-12-31T00:00:00.0Z
+    birthDate: 1961-12-31
+  - resourceType: Observation
+    category: 'OBSCAT#laboratory Laboratory'
+    code: 'LOINC#60515-4 CT Colon and Rectum W air contrast PR'
+    valueString: positive
+    status: final
+    issued: 2016-12-30T00:00:00.00-10:00
+results:
+  Numerator: false
+  Denominator Exclusions: false
+  InDemographic: true
