@@ -51,19 +51,19 @@ define "Flexible Sigmoidoscopy Performed":
 
 define "Colonoscopy Performed":
   [Procedure: "Colonoscopy"] Colonoscopy
-            where Colonoscopy.status = 'completed'
-              // This CQM login depends on MATGlobalCommonFunctionsFHIR4. 
-                // and Global."Normalize Interval" ( Colonoscopy.performed ) ends 10 years or less on or before 
-                // end of "Measurement Period"
-              // I'll try to  use more basic pattern like: 
-              // and Colonoscopy.performed during Interval[Today() - 10 years, Today()]
-              and Colonoscopy.performed within 10 years of Now()
+    where Colonoscopy.status = 'completed'
+      // This CQM login depends on MATGlobalCommonFunctionsFHIR4. 
+        // and Global."Normalize Interval" ( Colonoscopy.performed ) ends 10 years or less on or before 
+        // end of "Measurement Period"
+      // I'll try to  use more basic pattern like: 
+      // and Colonoscopy.performed during Interval[Today() - 10 years, Today()]
+      and Colonoscopy.performed within 10 years of Now()
 
 define "Total Colectomy Performed":
   [Procedure: "Total Colectomy"] Colectomy
-            where Colectomy.status = 'completed'
-              // and Global."Normalize Interval" ( Colectomy.performed ) ends on or before 
-              // end of "Measurement Period"
+    where Colectomy.status = 'completed'
+      // and Global."Normalize Interval" ( Colectomy.performed ) ends on or before 
+      // end of "Measurement Period"
 
 define "Fecal Occult Blood Test Performed":
   [Observation: "Fecal Occult Blood Test (FOBT)"] FecalOccultResult
@@ -78,22 +78,42 @@ define "Fecal Occult Blood Test Performed":
       // and Global."Latest" ( FecalOccultResult.effective ) during "Measurement Period"
       and FecalOccultResult.issued within 1 year of Now()
 
-// DH for troubleshooting
-// define FOBT_Labs:
-// "Fecal Occult Blood Test Performed" FOBTP
-//   where 'laboratory' in FOBTP.category.coding.code.value
-
 define "Fecal Immunochemical Test DNA Performed":
   [Observation: "FIT DNA"] FitDNA
-            where FitDNA.status in { 'final', 'amended', 'corrected' }
-              // and exists ( FitDNA.category FitDNACategory
-              //     where "laboratory" in FHIRHelpers.ToConcept ( FitDNACategory ).codes
-              // )
-              and 'laboratory' in FitDNA.category.coding.code.value
-              and FitDNA.value is not null
-              // and Global."Latest" ( FitDNA.effective ) 3 years or less on or before 
-              // end of "Measurement Period"
-              and FitDNA.issued within 3 years of Now()
+    where FitDNA.status in { 'final', 'amended', 'corrected' }
+      // and exists ( FitDNA.category FitDNACategory
+      //     where "laboratory" in FHIRHelpers.ToConcept ( FitDNACategory ).codes
+      // )
+      and 'laboratory' in FitDNA.category.coding.code.value
+      and FitDNA.value is not null
+      // and Global."Latest" ( FitDNA.effective ) 3 years or less on or before 
+      // end of "Measurement Period"
+      and FitDNA.issued within 3 years of Now()
+
+define "Malignant Neoplasm":
+  [Condition: "Malignant Neoplasm of Colon"] ColorectalCancer
+    // where Global."Prevalence Period" ( ColorectalCancer ) starts on or before 
+    //   end of "Measurement Period"
+
+define "CT Colonography Performed":
+  [Observation: "CT Colonography"] Colonography
+    where Colonography.status in { 'final', 'amended', 'corrected', 'appended' }
+      // and Global."Normalize Interval" ( Colonography.effective ) ends 5 years or less on or before 
+      // end of "Measurement Period"
+      and 'laboratory' in Colonography.category.coding.code.value
+      and Colonography.issued within 5 years of Now()
+
+define AgeInYears:
+   AgeInYears()
+
+define Now:
+  Now()
+
+define Today:
+  Today()
+
+define InDemographic:
+  AgeInYears() between 45 and 75 // inclusive
 
 define "Numerator":
   exists "Colonoscopy Performed" or
@@ -102,45 +122,17 @@ define "Numerator":
   exists "Fecal Immunochemical Test DNA Performed" or
   exists "CT Colonography Performed"
 
-define "Malignant Neoplasm":
-  [Condition: "Malignant Neoplasm of Colon"] ColorectalCancer
-            // where Global."Prevalence Period" ( ColorectalCancer ) starts on or before 
-            //   end of "Measurement Period"
-
 define "Denominator Exclusions":
   // Hospice."Has Hospice"
-            exists "Malignant Neoplasm"
-            or exists "Total Colectomy Performed"
-            // or FrailtyLTI."Advanced Illness and Frailty Exclusion Not Including Over Age 80"
-            // or ( AgeInYearsAt(date from start of "Measurement Period")>= 65
-                // and FrailtyLTI."Has Long Term Care Periods Longer Than 90 Consecutive Days"
-            // )
-            // or PalliativeCare."Palliative Care in the Measurement Period"
+  exists "Malignant Neoplasm"
+  or exists "Total Colectomy Performed"
+  // or FrailtyLTI."Advanced Illness and Frailty Exclusion Not Including Over Age 80"
+  // or ( AgeInYearsAt(date from start of "Measurement Period")>= 65
+      // and FrailtyLTI."Has Long Term Care Periods Longer Than 90 Consecutive Days"
+  // )
+  // or PalliativeCare."Palliative Care in the Measurement Period"
 
-define "CT Colonography Performed":
-  [Observation: "CT Colonography"] Colonography
-            where Colonography.status in { 'final', 'amended', 'corrected', 'appended' }
-              // and Global."Normalize Interval" ( Colonography.effective ) ends 5 years or less on or before 
-              // end of "Measurement Period"
-              and 'laboratory' in Colonography.category.coding.code.value
-              and Colonography.issued within 5 years of Now()
-
-
-define AgeInYears:
-   AgeInYears()
-
-define InDemographic:
-  AgeInYears() between 45 and 75 // inclusive
-
-define Now:
-  Now()
-
-define Today:
-  Today()
-
-// define NowEqualsToday:
-//   Now = Today
-
-// define NowEquivalentToday:
-//   Now ~ Today
-
+define NeedsColonoscopy: 
+  InDemographic is true and
+  Numerator is false and
+  "Denominator Exclusions" is false

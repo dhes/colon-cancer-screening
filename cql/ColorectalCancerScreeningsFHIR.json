@@ -859,6 +859,28 @@
                }
             }
          }, {
+            "name" : "Malignant Neoplasm",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "ColorectalCancer",
+                  "expression" : {
+                     "dataType" : "{http://hl7.org/fhir}Condition",
+                     "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
+                     "codeProperty" : "code",
+                     "codeComparator" : "in",
+                     "type" : "Retrieve",
+                     "codes" : {
+                        "name" : "Malignant Neoplasm of Colon",
+                        "type" : "ValueSetRef"
+                     }
+                  }
+               } ],
+               "relationship" : [ ]
+            }
+         }, {
             "name" : "CT Colonography Performed",
             "context" : "Patient",
             "accessLevel" : "Public",
@@ -1073,6 +1095,80 @@
                }
             }
          }, {
+            "name" : "AgeInYears",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "precision" : "Year",
+               "type" : "CalculateAge",
+               "operand" : {
+                  "path" : "birthDate.value",
+                  "type" : "Property",
+                  "source" : {
+                     "name" : "Patient",
+                     "type" : "ExpressionRef"
+                  }
+               }
+            }
+         }, {
+            "name" : "Now",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Now"
+            }
+         }, {
+            "name" : "Today",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Today"
+            }
+         }, {
+            "name" : "InDemographic",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "And",
+               "operand" : [ {
+                  "type" : "GreaterOrEqual",
+                  "operand" : [ {
+                     "precision" : "Year",
+                     "type" : "CalculateAge",
+                     "operand" : {
+                        "path" : "birthDate.value",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "Patient",
+                           "type" : "ExpressionRef"
+                        }
+                     }
+                  }, {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "value" : "45",
+                     "type" : "Literal"
+                  } ]
+               }, {
+                  "type" : "LessOrEqual",
+                  "operand" : [ {
+                     "precision" : "Year",
+                     "type" : "CalculateAge",
+                     "operand" : {
+                        "path" : "birthDate.value",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "Patient",
+                           "type" : "ExpressionRef"
+                        }
+                     }
+                  }, {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "value" : "75",
+                     "type" : "Literal"
+                  } ]
+               } ]
+            }
+         }, {
             "name" : "Numerator",
             "context" : "Patient",
             "accessLevel" : "Public",
@@ -1120,28 +1216,6 @@
                } ]
             }
          }, {
-            "name" : "Malignant Neoplasm",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "Query",
-               "source" : [ {
-                  "alias" : "ColorectalCancer",
-                  "expression" : {
-                     "dataType" : "{http://hl7.org/fhir}Condition",
-                     "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
-                     "codeProperty" : "code",
-                     "codeComparator" : "in",
-                     "type" : "Retrieve",
-                     "codes" : {
-                        "name" : "Malignant Neoplasm of Colon",
-                        "type" : "ValueSetRef"
-                     }
-                  }
-               } ],
-               "relationship" : [ ]
-            }
-         }, {
             "name" : "Denominator Exclusions",
             "context" : "Patient",
             "accessLevel" : "Public",
@@ -1162,78 +1236,33 @@
                } ]
             }
          }, {
-            "name" : "AgeInYears",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "precision" : "Year",
-               "type" : "CalculateAge",
-               "operand" : {
-                  "path" : "birthDate.value",
-                  "type" : "Property",
-                  "source" : {
-                     "name" : "Patient",
-                     "type" : "ExpressionRef"
-                  }
-               }
-            }
-         }, {
-            "name" : "InDemographic",
+            "name" : "NeedsColonoscopy",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
                "type" : "And",
                "operand" : [ {
-                  "type" : "GreaterOrEqual",
+                  "type" : "And",
                   "operand" : [ {
-                     "precision" : "Year",
-                     "type" : "CalculateAge",
+                     "type" : "IsTrue",
                      "operand" : {
-                        "path" : "birthDate.value",
-                        "type" : "Property",
-                        "source" : {
-                           "name" : "Patient",
-                           "type" : "ExpressionRef"
-                        }
+                        "name" : "InDemographic",
+                        "type" : "ExpressionRef"
                      }
                   }, {
-                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                     "value" : "45",
-                     "type" : "Literal"
+                     "type" : "IsFalse",
+                     "operand" : {
+                        "name" : "Numerator",
+                        "type" : "ExpressionRef"
+                     }
                   } ]
                }, {
-                  "type" : "LessOrEqual",
-                  "operand" : [ {
-                     "precision" : "Year",
-                     "type" : "CalculateAge",
-                     "operand" : {
-                        "path" : "birthDate.value",
-                        "type" : "Property",
-                        "source" : {
-                           "name" : "Patient",
-                           "type" : "ExpressionRef"
-                        }
-                     }
-                  }, {
-                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                     "value" : "75",
-                     "type" : "Literal"
-                  } ]
+                  "type" : "IsFalse",
+                  "operand" : {
+                     "name" : "Denominator Exclusions",
+                     "type" : "ExpressionRef"
+                  }
                } ]
-            }
-         }, {
-            "name" : "Now",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "Now"
-            }
-         }, {
-            "name" : "Today",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "Today"
             }
          } ]
       }
