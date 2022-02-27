@@ -132,7 +132,10 @@ define "Denominator Exclusions":
   // )
   // or PalliativeCare."Palliative Care in the Measurement Period"
 
-define NeedsColonoscopy: 
+define NeedsColorectalCancerScreening: 
   InDemographic is true and
   Numerator is false and
   "Denominator Exclusions" is false
+
+define ColorectalCancerScreeningRecommendation:
+  if NeedsColorectalCancerScreening is true then 'Needs colorectal cancer screening' else null

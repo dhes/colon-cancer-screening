@@ -1236,7 +1236,7 @@
                } ]
             }
          }, {
-            "name" : "NeedsColonoscopy",
+            "name" : "NeedsColorectalCancerScreening",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
@@ -1263,6 +1263,36 @@
                      "type" : "ExpressionRef"
                   }
                } ]
+            }
+         }, {
+            "name" : "ColorectalCancerScreeningRecommendation",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "If",
+               "condition" : {
+                  "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "IsTrue",
+                     "operand" : {
+                        "name" : "NeedsColorectalCancerScreening",
+                        "type" : "ExpressionRef"
+                     }
+                  }
+               },
+               "then" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                  "value" : "Needs colorectal cancer screening",
+                  "type" : "Literal"
+               },
+               "else" : {
+                  "asType" : "{urn:hl7-org:elm-types:r1}String",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Null"
+                  }
+               }
             }
          } ]
       }
