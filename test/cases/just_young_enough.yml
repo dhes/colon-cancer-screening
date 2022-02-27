@@ -17,4 +17,5 @@ results:
   Numerator: false
   Denominator Exclusions: false
   InDemographic: true
-  NeedsColonoscopy: true
+  NeedsColorectalCancerScreening: true
+  Recommendation: 'Needs colorectal cancer screening'

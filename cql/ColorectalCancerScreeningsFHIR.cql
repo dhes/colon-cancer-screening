@@ -137,5 +137,5 @@ define NeedsColorectalCancerScreening:
   Numerator is false and
   "Denominator Exclusions" is false
 
-define ColorectalCancerScreeningRecommendation:
+define Recommendation:
   if NeedsColorectalCancerScreening is true then 'Needs colorectal cancer screening' else null

@@ -1265,7 +1265,7 @@
                } ]
             }
          }, {
-            "name" : "ColorectalCancerScreeningRecommendation",
+            "name" : "Recommendation",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {

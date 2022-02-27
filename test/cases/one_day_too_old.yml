@@ -18,4 +18,5 @@ results:
   Numerator: false
   Denominator Exclusions: false
   InDemographic: false
-  NeedsColonoscopy: false
+  NeedsColorectalCancerScreening: false
+  Recommendation: null

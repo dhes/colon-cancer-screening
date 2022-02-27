@@ -13,5 +13,7 @@ results:
   Numerator: false
   Denominator Exclusions: true
   InDemographic: true
-  NeedsColonoscopy: false
+  NeedsColorectalCancerScreening: false
+  Recommendation: null
+
   
