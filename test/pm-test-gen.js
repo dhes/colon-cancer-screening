@@ -11,12 +11,12 @@ function expectCards(testCase) {
 function expectCardsContent(testCase) {
   if (expectCards(testCase)) {
     return {
-      summary: 'My CDS Hook Summary',
+      summary: 'Screening for Colorectal Cancer',
       indicator: 'info',
       detail: testCase.expected.Recommendation,
       source: {
-        label: 'My CDS Source',
-        url: 'https://www.example.org/my-cds-source'
+        label: 'USPSTF Colorectal cancer screening',
+        url: 'https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening'
       }
     };
   }
