@@ -4,7 +4,7 @@ function expectOK(testCase) {
 
 function expectCards(testCase) {
   if (testCase.expected != null) {
-    return testCase.expected.Recommendation != null;
+    return testCase.expected.ColorectalCancerScreeningRecommendation != null;
   }
 }
 
@@ -13,7 +13,7 @@ function expectCardsContent(testCase) {
     return {
       summary: 'Screening for Colorectal Cancer',
       indicator: 'info',
-      detail: testCase.expected.Recommendation,
+      detail: testCase.expected.ColorectalCancerScreeningRecommendation,
       source: {
         label: 'USPSTF Colorectal cancer screening',
         url: 'https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening'
