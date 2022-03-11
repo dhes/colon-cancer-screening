@@ -1,0 +1,72 @@
+# If you want to test peter barnes, comment out date: 2021-12-31 in cqlt.yaml 
+name: BarnesPeter
+data:
+  - resourceType: Patient
+    extension:
+      - url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-race
+        extension:
+          - url: ombCategory
+            valueCoding:
+              system: urn:oid:2.16.840.1.113883.6.238
+              code: 2106-3
+              display: White
+          - url: text
+            valueString: White
+    active: true
+    name: Peter Barnes
+    gender: male
+    birthDate: 1953-06-05
+  - resourceType: Observation
+    status: final
+    code: 'LOINC#2085-9 Cholesterol in HDL [Mass/volume] in Serum or Plasma'
+    effectiveDateTime: 2017-11-20
+    valueQuantity: 62 mg/dL
+  - resourceType: Observation
+    status: final
+    code: 'LOINC#79423-0 Cardiovascular disease 10Y risk [Likelihood] ACC-AHA Pooled Cohort by Goff 2013'
+    effectiveDateTime: 2022-02-21
+    valueQuantity: 11.66 %
+  - resourceType: Observation
+    status: final
+    code: 'LOINC#72166-2 Tobacco smoking status'
+    valueCodeableConcept: 'SNOMEDCT#266919005 Never smoked tobacco (finding)'
+    effectiveDateTime: 2022-02-16
+  - resourceType: Observation
+    status: final
+    code: 'LOINC#2093-3 Cholesterol [Mass/volume] in Serum or Plasma'
+    effectiveDateTime: 2017-11-20
+    valueQuantity: 183 mg/dL
+  - resourceType: Observation
+    status: final
+    code: 'LOINC#85354-9 Blood pressure panel with all children optional'
+    effectiveDateTime: 2019-05-22
+    component:
+      - code:
+          coding:
+            - system: http://loinc.org
+              code: 8480-6
+              display: Systolic blood pressure
+          text: Systolic blood pressure
+        valueQuantity:
+          value: 117
+          unit: mmHg
+          system: http://unitsofmeasure.org
+          code: mm[Hg]
+      - code:
+          coding:
+            - system: http://loinc.org
+              code: 8462-4
+              display: Diastolic blood pressure
+          text: Diastolic blood pressure
+        valueQuantity:
+          value: 75
+          unit: mmHg
+          system: http://unitsofmeasure.org
+          code: mm[Hg]
+results:
+  Numerator: false
+  Denominator Exclusions: false
+  InDemographic: true
+  NeedsColorectalCancerScreening: true
+  Recommendation: 'Needs colorectal cancer screening'
+
