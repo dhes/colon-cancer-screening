@@ -79,6 +79,22 @@ data:
     code: 'SNOMEDCT#73761001 Colonoscopy (procedure)'
     status: completed
     performedDateTime: 2011-07-12
+  - resourceType: Observation
+    status: final
+    code: 'LOINC#13457-7 Cholesterol in LDL Calc [Mass/Vol]'
+    valueQuantity: 113 mg/dL
+    # done at Castle Hospital see https://www.myadventisthealthportal.org/
+    effectiveDateTime: 2013-01-04
+  - resourceType: MedicationStatement
+    status: active
+    # first Rx date per Elation
+    effectiveDateTime: 2018-08-21
+    code: 'RXNORM#859751 rosuvastatin calcium 20 MG Oral Tablet'
+  - resourceType: MedicationRequest
+    status: active
+    # most recent refill request
+    authoredOn: 2022-02-15
+    code: 'RXNORM#859751 rosuvastatin calcium 20 MG Oral Tablet'
 results:
   Numerator: true
   Denominator Exclusions: false
