@@ -63,10 +63,26 @@ data:
           unit: mmHg
           system: http://unitsofmeasure.org
           code: mm[Hg]
+  - resourceType: Procedure
+    code: 'SNOMEDCT#73761001 Colonoscopy (procedure)'
+    status: completed
+    performedDateTime: 2021-10-04
+  - resourceType: Procedure
+    code: 'SNOMEDCT#73761001 Colonoscopy (procedure)'
+    status: completed
+    performedDateTime: 2020-07-24
+  - resourceType: Procedure
+    code: 'SNOMEDCT#73761001 Colonoscopy (procedure)'
+    status: completed
+    performedDateTime: 2019-07-22
+  - resourceType: Procedure
+    code: 'SNOMEDCT#73761001 Colonoscopy (procedure)'
+    status: completed
+    performedDateTime: 2011-07-12
 results:
-  Numerator: false
+  Numerator: true
   Denominator Exclusions: false
   InDemographic: true
-  NeedsColorectalCancerScreening: true
-  Recommendation: 'Needs colorectal cancer screening'
+  NeedsColorectalCancerScreening: false
+  Recommendation: null
 
