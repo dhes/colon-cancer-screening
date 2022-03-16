@@ -2,7 +2,7 @@ library ColorectalCancerScreeningsFHIR version '0.0.003'
 
 using FHIR version '4.0.1'
 
-include FHIRHelpers version '4.0.001' called FHIRHelpers
+include FHIRHelpers version '4.0.1' called FHIRHelpers
 
 codesystem "ObservationCategoryCodes": 'http://terminology.hl7.org/CodeSystem/observation-category' 
 
